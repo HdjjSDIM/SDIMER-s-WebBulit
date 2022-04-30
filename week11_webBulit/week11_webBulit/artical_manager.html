@@ -81,8 +81,11 @@
       <div class="card">
         <div>
           <img class="icon" src="images/icon.jpg" />
+          <form action="未通过文章详细显示.html" method="get">
+            <input type="hidden" value="<?php echo $artical['uid'];?>" name="current_artical_id">
+            <input type="submit" value="<?php echo $artical['artical_title']?>">
+          </form>
           <span>发布用户：<?php echo $current_users_name?><span>
-          <span>标题：<?php echo $artical['artical_title']?><span>
           <div><span><img  src="images/<?php echo $artical['artical_cover'];?>" class="cover" alt="" /></span>
           <span>摘要：<?php echo $artical['artical_abstract']?></span>
           <span>发布时间：<?php echo $artical['upload_time']?></span>

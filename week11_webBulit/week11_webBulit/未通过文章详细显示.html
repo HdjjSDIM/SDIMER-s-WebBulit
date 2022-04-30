@@ -53,7 +53,7 @@
     echo '连接错误：'.mysqli_connect_error();
     }
     //向数据表orders发起一个检索，获取所有下单信息
-    $sql = 'SELECT * FROM passedarticle';
+    $sql = 'SELECT * FROM artical';
     //执行插入的查询语句
     $result = mysqli_query($conn,$sql); 
     //获取记录,并保存为数组
@@ -76,28 +76,6 @@
         </p>
         
         <div>
-          <form action="" method="post" >
-            <button type="submit" id="like_btn" name="btn_like" class="" > like </button>
-            <?php
-            if(isset($_POST['btn_like'])){
-                $uid=$showing_artical['uid'];
-              $conn = mysqli_connect('localhost','root','','prototype_week9');
-              $query ="UPDATE artical SET like_number=like_number+1 WHERE uid=$uid";
-              mysqli_query($conn,$query);
-            }
-            //每次单机点赞后，页面会刷新并重新显示数据库中点赞数
-            $conn = mysqli_connect('localhost','root','','prototype_week9');
-            $sql = 'SELECT * FROM artical';
-            $result = mysqli_query($conn,$sql); 
-            $artical = mysqli_fetch_all($result,MYSQLI_ASSOC);
-            foreach($artical as $artical){
-              if($artical['uid']==$showing_artical['uid']){
-                $showing_artical=$artical;
-              }
-            }
-          ?>
-          <div><?php echo $showing_artical['like_number'];//显示点赞数?></div>
-          </form>
         </div>
         <?php
             if(isset($_POST['comment_btn'])){
@@ -111,44 +89,7 @@
               }
           }
         ?>
-        <form action="" method="post" name="comment_form">
-          <div class="replytext">
-            <input type="text" class="reply" placeholder="发表你的评论！" name="comment" autocomplete="off">
-            <input type="submit" button class="replybtt" name="comment_btn" >
-                  <i>回！</i>
-            </button>
-          </div>
-        </form>
       </div>
-      <?php
-        $conn = mysqli_connect('localhost','root','','prototype_week9');
-        //检查连接是否成功
-        if(!$conn){
-          echo '连接错误：'.mysqli_connect_error();
-        }
-        //向数据表orders发起一个检索，获取所有下单信息
-        $sql = 'SELECT * FROM comment';
-        //执行插入的查询语句
-        $result = mysqli_query($conn,$sql); 
-        //获取记录,并保存为数组
-        $comment = mysqli_fetch_all($result,MYSQLI_ASSOC);
-        foreach($comment as $comment){
-          if($comment['artical_id']==$showing_artical['uid']){ ?>
-            <div class="card">
-              <div class="lou">
-                <h2><?php echo $current_user_username?></h2>
-                <?php echo $comment['comment_time']?></h5>
-              </div>
-              <div class="ICON2">
-                <a href="#" style="float:right" class="usericon">
-                    <img class="icon" src="images/icon.jpg" />
-                </a>
-              </div>
-              <p><?php echo $comment['content']; ?></p>
-            </div>
-        <?php }
-      } ?>
-      
     </div>
   </div>
 
