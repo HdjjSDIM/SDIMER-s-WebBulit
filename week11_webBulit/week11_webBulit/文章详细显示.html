@@ -9,7 +9,6 @@
 </head>
 <body>
   <?php
-    session_start();
     $current_user_permission=$_SESSION['permission'];
     $current_user_username=$_SESSION['username'];
     $current_user_id=$_SESSION['id'];
@@ -20,7 +19,7 @@
     <p>重置浏览器大小查看效果。</p>
   </div> -->
 
-  <?php include('header_include.html');?>
+  
   <div class="secondnav">
     <form action="分类界面.html" method="get">
       <?php

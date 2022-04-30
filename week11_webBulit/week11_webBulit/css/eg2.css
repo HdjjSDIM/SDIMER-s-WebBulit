@@ -145,7 +145,7 @@
   .card {
     background-color: white;
     padding: 20px;
-    margin-top: 20px;
+    margin: 20px;
   }
   /* 列后面清除浮动 */
   .row:after {

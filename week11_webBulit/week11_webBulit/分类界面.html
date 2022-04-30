@@ -12,7 +12,17 @@
 </head>
 <body>
 <?php include('header_include.html'); ?>
-
+  <?php
+      $current_user_permission=$_SESSION['permission'];
+      $current_user_username=$_SESSION['username'];
+      $current_user_id=$_SESSION['id'];
+    ?>
+  <?php
+    //取出所有的user信息
+    $conn = mysqli_connect('localhost','root','','prototype_week9');
+    $sql = 'SELECT * FROM users';
+    $result = mysqli_query($conn,$sql); 
+    $users = mysqli_fetch_all($result,MYSQLI_ASSOC);?>
 <div class="secondnav">
   <form action="" method="get">
     <?php
@@ -120,6 +130,7 @@
           <div class="row">
             <div class="leftcolumn">
               <?php foreach($artical as $artical){ //遍历，将带有当前分区以及标签的文章显示出来?>
+                
                 <?php if($artical['artical_classification']==$_GET['daqu_id']){ ?>
                   <?php $subject =$artical['artical_label'];
                         $pattern = '/[a]+/';
@@ -133,26 +144,40 @@
                     }
                   } ?>
                   <?php if($isshow_label==1){ ?>
+                    <?php
+                      //取出所有的user信息
+                      $conn = mysqli_connect('localhost','root','','prototype_week9');
+                      $sql = 'SELECT * FROM users';
+                      $result = mysqli_query($conn,$sql); 
+                      $users = mysqli_fetch_all($result,MYSQLI_ASSOC);?>
+                    <?php foreach($users as $users1){
+                        if($users1['id']==$artical['writer_id']){
+                          $current_users_name=$users1['username'];
+                        }
+                    }?>
                     <div class="card">
                       <form action="文章详细显示.html" method="get">
                         <div class="usericoni">
                           <a href="#" style="float:left" class="usericon">
-                              <img class="icon" src="images/<?php echo $artical['artical_cover'];?>" />
+                              <img class="icon" src="images/usericon/LOGO.jpg" /> <!--这里的头像还不是数据库中用户的头像-->
                           </a>
                           <br>
                         </div>
+                        <span>发布用户：<?php echo $current_users_name?><span></span>
                         <input type="hidden" value="<?php echo $artical['uid'];?>" name="current_artical_id">
                         <input type="submit" value="<?php echo $artical['artical_title'];?>" name="current_artical">
-                        <div style="word-wrap: break-word;">
-                          摘要：<?php echo $artical['artical_abstract'];?>
+                        <div><span><img  src="images/<?php echo $artical['artical_cover'];?>" class="cover" alt="" /></span>
+                        <span>摘要：<?php echo $artical['artical_abstract']?></span>
+                        <span>发布时间：<?php echo $artical['upload_time']?></span>
                         </div>
+                        <span></span>
+                        
                         <div>点赞数:<?php echo $artical['like_number'];?>  
                             收藏数:<?php echo $artical['collection_number'];?>
                         </div>
-                        <div>
-                          发布时间：<?php echo $artical['upload_time'];?>
-                        </div>
+                      
                       </form>
+                      
                     </div>
                   <?php }?>
                 <?php }?>

@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 }
 if ($isInfoAvailable == true) {
     if (!isset($_SESSION['username'])) {
-            $errorpassword = "1";
+            
             $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbname); //大范围到小范围，服务器到数据库
             if (!$conn) {
                 die("connect failed");
@@ -69,11 +69,12 @@ if ($isInfoAvailable == true) {
                     //$sql = "SELECT 'id', 'username' ，'permission' FROM 'users' WHERE 'username'='$user_username' AND 'password'='$user_password'";
                     $sql = "SELECT id, username,permission FROM users WHERE username='$user_username' AND password='$user_password'";
                     $result2 = mysqli_query($conn, $sql);
-                    if ($result2 == false) {
+                    $test = mysqli_num_rows($result2);
+                    if ($test == 0) {
+                        
                         $errorpassword = "密码错误";
                     } else {
-                        // $test = mysqli_fetch_assoc($result);
-                        $test = mysqli_num_rows($result2);
+                        
                         if ($test == 1) {
                             $row = mysqli_fetch_array($result2);
                             $_SESSION['id'] = $row['id'];

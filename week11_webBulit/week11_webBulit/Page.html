@@ -3,7 +3,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>SDIM WEB PAGE - Dare to dream!</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/style.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
@@ -15,6 +15,7 @@
         <!--I should remind you that CDN may be distribueted based on your IP location. Be careful if you are using proxy!-->
     </head>
     <body>
+        <?php session_start();?>
         <section id="qaq" class="header">
             <nav>  <!--This stands for navigation links -->
                 <a href="Page.html"><img src="source/LOGO-竖向中文+英文.png"></a>
@@ -25,16 +26,18 @@
                     <!-- 不做icons -->
                     <ul>
                         <li><a class="usericon" href="login1.1.php"><img class="icon" src="source/space_earth.jpg" alt="qwq"></a></li>
-                        <?php
-                            session_start();
-                            $current_user_permission=$_SESSION['permission'];
-                            if($current_user_permission==1){ 
-                        ?>
-                                <li><a href="artical_manager.html" >管理</a></li>
-                                <li><a href="在线上传2.html">发布</a></li>
-                                <li><a href="" >个人空间</a></li>
-                                <li><a href="exit.php" >退出登录</a></li>
-                            <?php }?>
+                        <?php if(isset($_SESSION['username'])){ ?>
+                            <?php
+                                
+                                $current_user_permission=$_SESSION['permission'];
+                                if($current_user_permission==1){ 
+                            ?>
+                                    <li><a href="artical_manager.html" >管理</a></li>
+                                    <li><a href="在线上传2.html">发布</a></li>
+                                    <li><a href="" >个人空间</a></li>
+                                    <li><a href="exit.php" >退出登录</a></li>
+                                <?php }?>
+                        <?php }?>
                         <li><a href="Contact.html">关于我们</a></li>
                         
                         

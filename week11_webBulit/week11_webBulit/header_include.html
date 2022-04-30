@@ -8,16 +8,18 @@
             <!-- 不做icons -->
             <ul>
                 <li><a class="usericon" href="login1.1.php"><img class="icon" src="source/space_earth.jpg" alt="qwq"></a></li>
-                <?php
-                    session_start();
-                    $current_user_permission=$_SESSION['permission'];
-                    if($current_user_permission==1){ 
-                ?>
-                        <li><a href="artical_manager.html" >管理</a></li>
-                        <li><a href="在线上传2.html">发布</a></li>
-                        <li><a href="" >个人空间</a></li>
-                        <li><a href="exit.php" >退出登录</a></li>
-                    <?php }?>
+                <?php session_start();?>
+                <?php if(isset($_SESSION['username'])){ ?>
+                    <?php
+                        $current_user_permission=$_SESSION['permission'];
+                        if($current_user_permission==1){ 
+                    ?>
+                            <li><a href="artical_manager.html" >管理</a></li>
+                            <li><a href="在线上传2.html">发布</a></li>
+                            <li><a href="" >个人空间</a></li>
+                            <li><a href="exit.php" >退出登录</a></li>
+                        <?php }?>
+                <?php }?>
                 <li><a href="Contact.html">关于我们</a></li>
             </ul>
         </div>
