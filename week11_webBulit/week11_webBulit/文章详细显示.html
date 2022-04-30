@@ -10,9 +10,17 @@
 <body>
   <?php include('header_include.html')?>
   <?php
-    $current_user_permission=$_SESSION['permission'];
-    $current_user_username=$_SESSION['username'];
-    $current_user_id=$_SESSION['id'];
+    if(isset($_SESSION['username'])){
+      $current_user_permission=$_SESSION['permission'];
+      $current_user_username=$_SESSION['username'];
+      $current_user_id=$_SESSION['id'];
+    }
+    else{
+      $current_user_permission=0;
+      $current_user_username="";
+      $current_user_id="";
+    }
+    
   ?>
   <!-- <div class="header">
     <h1>我的网页</h1>
@@ -73,82 +81,88 @@
           <embed src="artical/<?php echo $showing_artical['artical_pdf'];?>" style=" width: 1000px;height: 1000px;" hidden="ture" />
         </p>
         
-        <div>
-          <form action="" method="post" >
-            <button type="submit" id="like_btn" name="btn_like" class="" > like </button>
-            <?php
-            if(isset($_POST['btn_like'])){
-                $uid=$showing_artical['uid'];
-              $conn = mysqli_connect('localhost','root','','prototype_week9');
-              $query ="UPDATE artical SET like_number=like_number+1 WHERE uid=$uid";
-              mysqli_query($conn,$query);
-            }
-            //每次单机点赞后，页面会刷新并重新显示数据库中点赞数
-            $conn = mysqli_connect('localhost','root','','prototype_week9');
-            $sql = 'SELECT * FROM artical';
-            $result = mysqli_query($conn,$sql); 
-            $artical = mysqli_fetch_all($result,MYSQLI_ASSOC);
-            foreach($artical as $artical){
-              if($artical['uid']==$showing_artical['uid']){
-                $showing_artical=$artical;
+        <?php if($current_user_permission==1){ ?>
+          <div>
+            <form action="" method="post" >
+              <button type="submit" id="like_btn" name="btn_like" class="" > like </button>
+              <?php
+              if(isset($_POST['btn_like'])){
+                  $uid=$showing_artical['uid'];
+                $conn = mysqli_connect('localhost','root','','prototype_week9');
+                $query ="UPDATE artical SET like_number=like_number+1 WHERE uid=$uid";
+                mysqli_query($conn,$query);
               }
+              //每次单机点赞后，页面会刷新并重新显示数据库中点赞数
+              $conn = mysqli_connect('localhost','root','','prototype_week9');
+              $sql = 'SELECT * FROM artical';
+              $result = mysqli_query($conn,$sql); 
+              $artical = mysqli_fetch_all($result,MYSQLI_ASSOC);
+              foreach($artical as $artical){
+                if($artical['uid']==$showing_artical['uid']){
+                  $showing_artical=$artical;
+                }
+              }
+            ?>
+            <div><?php echo $showing_artical['like_number'];//显示点赞数?></div>
+            </form>
+          </div>
+          <?php
+              if(isset($_POST['comment_btn'])){
+                $artical_number=$showing_artical['uid'];
+                $content=$_POST['comment'];
+                $comment_time=date("Y-m-d");  //date("Y-m-d H:i:s")显示时间
+                if(!empty($artical_number) && !empty($content)&&!empty($comment_time)){
+                  $conn = mysqli_connect('localhost','root','','prototype_week9');
+                  $query = "INSERT INTO comment VALUES(0,'$artical_number','$content','$comment_time')";//数据库中向comment表中插入信息
+                  mysqli_query($conn,$query);//操作数据库
+                }
             }
           ?>
-          <div><?php echo $showing_artical['like_number'];//显示点赞数?></div>
-          </form>
-        </div>
-        <?php
-            if(isset($_POST['comment_btn'])){
-              $artical_number=$showing_artical['uid'];
-              $content=$_POST['comment'];
-              $comment_time=date("Y-m-d");  //date("Y-m-d H:i:s")显示时间
-              if(!empty($artical_number) && !empty($content)&&!empty($comment_time)){
-                $conn = mysqli_connect('localhost','root','','prototype_week9');
-                $query = "INSERT INTO comment VALUES(0,'$artical_number','$content','$comment_time')";//数据库中向comment表中插入信息
-                mysqli_query($conn,$query);//操作数据库
-              }
-          }
-        ?>
-        <form action="" method="post" name="comment_form">
-          <div class="replytext">
-            <input type="text" class="reply" placeholder="发表你的评论！" name="comment" autocomplete="off">
-            <input type="submit" button class="replybtt" name="comment_btn" >
-                  <i>回！</i>
-            </button>
-          </div>
-        </form>
-      </div>
-      <?php
-        $conn = mysqli_connect('localhost','root','','prototype_week9');
-        //检查连接是否成功
-        if(!$conn){
-          echo '连接错误：'.mysqli_connect_error();
-        }
-        //向数据表orders发起一个检索，获取所有下单信息
-        $sql = 'SELECT * FROM comment';
-        //执行插入的查询语句
-        $result = mysqli_query($conn,$sql); 
-        //获取记录,并保存为数组
-        $comment = mysqli_fetch_all($result,MYSQLI_ASSOC);
-        foreach($comment as $comment){
-          if($comment['artical_id']==$showing_artical['uid']){ ?>
-            <div class="card">
-              <div class="lou">
-                <h2><?php echo $current_user_username?></h2>
-                <?php echo $comment['comment_time']?></h5>
-              </div>
-              <div class="ICON2">
-                <a href="#" style="float:right" class="usericon">
-                    <img class="icon" src="images/icon.jpg" />
-                </a>
-              </div>
-              <p><?php echo $comment['content']; ?></p>
+          <form action="" method="post" name="comment_form">
+            <div class="replytext">
+              <input type="text" class="reply" placeholder="发表你的评论！" name="comment" autocomplete="off">
+              <input type="submit" button class="replybtt" name="comment_btn" >
+                    <i>回！</i>
+              </button>
             </div>
-        <?php }
-      } ?>
-      
+          </form>
+      </div>
+        <?php
+          $conn = mysqli_connect('localhost','root','','prototype_week9');
+          //检查连接是否成功
+          if(!$conn){
+            echo '连接错误：'.mysqli_connect_error();
+          }
+          //向数据表orders发起一个检索，获取所有下单信息
+          $sql = 'SELECT * FROM comment';
+          //执行插入的查询语句
+          $result = mysqli_query($conn,$sql); 
+          //获取记录,并保存为数组
+          $comment = mysqli_fetch_all($result,MYSQLI_ASSOC);
+          foreach($comment as $comment){
+            if($comment['artical_id']==$showing_artical['uid']){ ?>
+              <div class="card">
+                <div class="lou">
+                  <h2><?php echo $current_user_username?></h2>
+                  <?php echo $comment['comment_time']?></h5>
+                </div>
+                <div class="ICON2">
+                  <a href="#" style="float:right" class="usericon">
+                      <img class="icon" src="images/icon.jpg" />
+                  </a>
+                </div>
+                <p><?php echo $comment['content']; ?></p>
+              </div>
+          <?php }
+        } ?>
+        <?php }?>
+        
+        <?php if($current_user_permission==0){ ?>
+          <div class="card"><h1>请登录以解锁点赞、收藏、评论功能</h1></div>
+        <?php }?>
     </div>
   </div>
+  <div class="card"></div>
 
   <div class="footer">
     <h2>底部区域</h2>

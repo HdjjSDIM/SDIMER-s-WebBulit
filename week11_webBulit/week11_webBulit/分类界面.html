@@ -12,11 +12,17 @@
 </head>
 <body>
 <?php include('header_include.html'); ?>
-  <?php
-      $current_user_permission=$_SESSION['permission'];
-      $current_user_username=$_SESSION['username'];
-      $current_user_id=$_SESSION['id'];
-    ?>
+<?php
+if(isset($_SESSION['username'])){
+  $current_user_permission=$_SESSION['permission'];
+  $current_user_username=$_SESSION['username'];
+  $current_user_id=$_SESSION['id'];
+}
+else{
+  $current_user_permission=0;
+  $current_user_username="";
+  $current_user_id="";
+}?>
   <?php
     //取出所有的user信息
     $conn = mysqli_connect('localhost','root','','prototype_week9');
