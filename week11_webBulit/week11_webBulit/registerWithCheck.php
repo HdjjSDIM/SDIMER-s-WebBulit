@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -8,16 +10,16 @@
 
 <body>
     <?php
-    // 初始化session.
-    session_start();
-    /*** 删除所有的session变量..也可用unset($_SESSION[xxx])逐个删除。****/
-    $_SESSION = array();
-    /***删除sessin id.由于session默认是基于cookie的，所以使用setcookie删除包含session id的cookie.***/
-    if (isset($_COOKIE[session_name()])) {
-        setcookie(session_name(), '', time() - 42000, '/');
-    }
-    // 最后彻底销毁session.
-    session_destroy();
+    // // 初始化session.
+    // session_start();
+    // /*** 删除所有的session变量..也可用unset($_SESSION[xxx])逐个删除。****/
+    // $_SESSION = array();
+    // /***删除sessin id.由于session默认是基于cookie的，所以使用setcookie删除包含session id的cookie.***/
+    // if (isset($_COOKIE[session_name()])) {
+    //     setcookie(session_name(), '', time() - 42000, '/');
+    // }
+    // // 最后彻底销毁session.
+    // session_destroy();
 
 
     //接下来判断传入表单的信息是否安全（处理全是空格之类的睿智情况）可以用来转化用户名和密码
@@ -36,33 +38,25 @@
     $dbname = "messagedb"; //数据库名字
 
     //其实php可以不用给初始值，但是担心后面的echo要打印会报错，所以给出
-    $username = $password = "";
+    $username  = "";
     $isInfoAvailable = false;
     //错误提示信息，在输入框旁边显示，初始值是必填项目
-    $errorusername = $errorpassword = "必填项目";
+    $errorusername  = "必填项目";
 
     //下面开始判断信息是否为空，是否合法
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if (empty($_POST["username"])) {
             //改写错误提示信息即可
-            $errorusername = "用户名不能为空";
+            $errorusername = "学号不能为空";
         } else {
-            if (!preg_match("/^[\w]*$/", $_POST["username"])) {
-                $errorusername = "只允许字母和数字";
+            if (!preg_match("/^[0-9]{8}$/", $_POST["username"])) {
+                $errorusername = "学号格式错误";
             } else {
                 $username = checkInfo($_POST["username"]);
-            }
-        }
-        if (empty($_POST["password"])) {
-            $errorpassword = "密码不能为空";
-        } else {
-            if (!preg_match("/^\d{6,14}$/", $_POST["password"])) {
-                $errorpassword = "密码长度限制6~14";
-            } else {
-                $password = checkInfo($_POST["password"]);
                 $isInfoAvailable = true;
             }
         }
+        
     }
 
 
@@ -80,7 +74,7 @@
         if ($resultOfCheck) {
             $errorusername = "用户名已经存在";
         } else {
-            $sql = "INSERT INTO users(username,password)VALUES( '$username','$password')";
+            $sql = "INSERT INTO users(username,nickName,password)VALUES( '$username','$username','$username')";
             if (mysqli_query($coon, $sql)) {
                 // echo "注册成功";
                 header('Location: login1.1.php');
@@ -126,13 +120,7 @@
         <?php
         echo $errorusername;
         ?>
-        <!-- 打印错误信息 -->
-        <br>
-        密码：<input type="password" name="password">
-        <?php
-        echo $errorpassword;
-        ?>
-        <br>
+        
         <input type="submit" value="注册">
         <!-- 如果 input type不是关键字，则显示输入栏-->
         <!--
