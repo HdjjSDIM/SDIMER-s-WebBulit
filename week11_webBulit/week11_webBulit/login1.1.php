@@ -67,7 +67,7 @@ if ($isInfoAvailable == true) {
                     $user_username = mysqli_real_escape_string($conn, $username);
                     $user_password = mysqli_real_escape_string($conn, $password);
                     //$sql = "SELECT 'id', 'username' ，'permission' FROM 'users' WHERE 'username'='$user_username' AND 'password'='$user_password'";
-                    $sql = "SELECT id, username,permission FROM users WHERE username='$user_username' AND password='$user_password'";
+                    $sql = "SELECT id, username,permission,likedArtical FROM users WHERE username='$user_username' AND password='$user_password'";
                     $result2 = mysqli_query($conn, $sql);
                     $test = mysqli_num_rows($result2);
                     if ($test == 0) {
@@ -80,6 +80,8 @@ if ($isInfoAvailable == true) {
                             $_SESSION['id'] = $row['id'];
                             $_SESSION['username'] = $row['username'];
                             $_SESSION['permission'] = $row['permission'];
+                            $_SESSION['likedArtical'] = $row['likedArtical'];
+                            
                             header('Location:Page.html');
                             //header("Location:mainPage.html");
                             // if($_SESSION['permission']==1){
