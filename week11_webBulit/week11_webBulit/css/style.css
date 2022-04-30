@@ -37,6 +37,7 @@ a:active {color:yellow;} /*点击时的颜色*/
     height: 66.8px;
 }
 .icon {
+    float: right;
     height: 56.8px;
     width: 56.8px;
     border-radius: 50%;

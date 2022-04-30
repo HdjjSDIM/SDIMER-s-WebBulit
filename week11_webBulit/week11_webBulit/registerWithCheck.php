@@ -35,7 +35,7 @@
     $dbServername = "localhost"; //服务器名字
     $dbUsername = "root"; //用户名
     $dbPassword = "";
-    $dbname = "messagedb"; //数据库名字
+    $dbname = "prototype_week9"; //数据库名字
 
     //其实php可以不用给初始值，但是担心后面的echo要打印会报错，所以给出
     $username  = "";
