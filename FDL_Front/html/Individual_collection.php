@@ -209,14 +209,13 @@ include "connect_to_db_article.php";
       <div class="card">
         <div class="封面">
           <img src="../img/银行卡正面.jpg" width="300px" height="180px" alt="" />
-
         </div>
         <div class="artical_information">
           <input style="border: none;background-color: white;font-size: 30px;" type="button" value=<?php echo $information["article_name"]; ?>>　　
           <br>
           <br>
 
-          <span style="font-family:'宋体';word-spacing:  4rem;">　　作者：
+          <span style="font-family:'宋体';word-spacing:  4rem;"> 作者:
             <?php echo ($information["author"]); //We use non-breaking sp. here in order to make it more elegant.
             ?>
             点赞数：
@@ -230,8 +229,8 @@ include "connect_to_db_article.php";
           <br>
           <input type="button" style="margin-right: 20px; float:right;color: red;" value="取消收藏">
 
-          <h4>　摘要：　
-            <span style="font-family:'宋体';">
+          <h4>摘要：
+            <span style="font-family:'宋体';">//
               <?php print $information["abstract"];?>
             </span>
           </h4>

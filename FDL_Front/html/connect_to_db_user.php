@@ -1,6 +1,6 @@
 <?php
     // SQL sentence to excute the command
-    $sql = "SELECT * FROM user_like_article WHERE article_id = 1";
+    $sql = "SELECT * FROM user WHERE id = 1";
 
     // If you have cookies reserved, use the command like this:
     // $XXX = XXX

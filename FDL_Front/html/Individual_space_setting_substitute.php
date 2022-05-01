@@ -209,11 +209,27 @@ include "connect_to_db_user.php"
 
       </div>
 
+      <?php if(isset($_POST['check_information'])){
+             $USER_NAME = mysqli_real_escape_string($connection, $_POST["user_name"]);
+             $USER_PASSWORD = mysqli_real_escape_string($connection, $_POST["user_password"]);
+             $USER_HOBBY = mysqli_real_escape_string($connection, $_POST["user_hobby"]);
+             $sql_tran = "UPDATE user SET username='$USER_NAME', password='$USER_PASSWORD',hobby='$USER_HOBBY' WHERE id = 1";
+             if (mysqli_query($connection, $sql_tran)) {
+              } else {
+                // error
+                echo 'query error - ' . mysqli_errno($connection);
+              }
+        }?>
+        <?php
+            include "connect_to_db.php";
+            include "connect_to_db_user.php"
+            // Use $information[xx] to get the information.
+            ?>
 
       <div class="card">
         <h2>修改</h2>
 
-        <form method="post" action="Individual_space_setting.php" name="refresh">
+        <form method="post" action="" name="refresh">
           账号 （昵称） <input type="text" size="30px" name="user_name">
           <br>
           密码 <input type="text" size="40px" name="user_password">
@@ -225,10 +241,11 @@ include "connect_to_db_user.php"
           <input type="file" id="avaPhoto" name="picture" /></p>
           <!-- Please do not upload the picture when in development stage. I will find some efficient method to store the picture. -->
 
-          <input type="button" value="click" id="btn" onclick="jump_function()">
+          <input type="submit" value="click" name="check_information">
           <!-- TODO - button or submit -->
           <input type="reset" value="清空"></p>
         </form>
+       
         <script>
           function jump_function() {
             <?php

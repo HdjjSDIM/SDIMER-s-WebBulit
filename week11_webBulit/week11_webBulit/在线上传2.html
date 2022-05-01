@@ -1,20 +1,22 @@
 <em><!DOCTYPE html>
 </em>
 <html>
+
 <head>
-<meta charset="utf-8">
-<title>在线上传1</title>
-<link rel="stylesheet" href="upload_css.css">
-<link rel="stylesheet" href="css/style.css  ">
+    <meta charset="utf-8">
+    <title>在线上传1</title>
+    <link rel="stylesheet" href="upload_css.css">
+    <link rel="stylesheet" href="css/style.css  ">
 </head>
+
 <body>
-  <?php include('header_include.html')?>
-  <?php
+    <?php include('header_include.html')?>
+    <?php
     $current_user_permission=$_SESSION['permission'];
     $current_user_username=$_SESSION['username'];
     $current_user_id=$_SESSION['id'];
   ?>
-  <?php
+        <?php
     $errors=array('sel1'=>'','sel2'=>'','title'=>'','abstract'=>'','picture'=>'','artical'=>'','isanonymous'=>'',);
     define('NEW_PATH_photo','images/');   //文章封面保存地址
     define('NEW_PATH_artical','artical/'); //文章pdf保存地址
@@ -74,13 +76,13 @@
 
 
 
-  <h2><em>分享您的所知所想</em></h2>
-  <div class="fakeimg" style="height:200px;"><em>封面</em></div>
+            <h2><em>分享您的所知所想</em></h2>
+            <div class="fakeimg" style="height:200px;"><em>封面</em></div>
 
 
 
-  <form  name="stu_add_form" action="在线上传2.html" enctype="multipart/form-data" method="post">  
-    <span style="font-size: 18px">
+            <form name="stu_add_form" action="在线上传2.html" enctype="multipart/form-data" method="post">
+                <span style="font-size: 18px">
         <?php
           $conn = mysqli_connect('localhost','root','','prototype_week9');
           $sql = 'SELECT * FROM artical_classification';
@@ -156,9 +158,9 @@
     </p4>
     <br>
     </span></em>
-      <hr size = "5px" color="#555555">
-        <div class = "box2">
-          <div> <span style="font-size: 18px"><em>
+                <hr size="5px" color="#555555">
+                <div class="box2">
+                    <div> <span style="font-size: 18px"><em>
             <label for="name">上传封面：</label>
             <input type="file" id="avaPhoto" name="picture"/>
             <div class="alert-primary"><?php echo $errors['picture'];?></div>
@@ -176,11 +178,10 @@
             <div class="alert-primary"><?php echo $errors['isanonymous'];?></div>
             <input type="submit" value="提交" name="submit"/>
           </em></span></div>
-        </div>
-  </form>
-  
-  
+                </div>
+            </form>
+
+
 </body>
+
 </html>
-
-
