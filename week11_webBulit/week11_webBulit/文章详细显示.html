@@ -24,14 +24,11 @@
       $current_user_permission=0;
       $current_user_username="";
       $current_user_id="";
+      $current_user_likedArtical="";
     }
     
 =======
-    $current_user_permission=$_SESSION['permission'];
-    $current_user_username=$_SESSION['username'];
-    $current_user_likedArtical=$_SESSION['likedArtical'];
-    $current_user_id=$_SESSION['id'];
->>>>>>> main
+    
   ?>
   <!-- <div class="header">
     <h1>我的网页</h1>
@@ -150,19 +147,15 @@
                   $arrayLiked_old=explode("a", $current_user_likedArtical);
                   foreach ($arrayLiked_old as $articalId){
                     if($articalId==$uid){
-                      
                     }
                     else{
                       $current_user_likedArtical .="a" .$uid;
-              $query_recordLiked="UPDATE users SET likedArtical='$current_user_likedArtical' WHERE id=$current_user_id";
-              mysqli_query($conn,$query_recordLiked);
-              echo "<script>alert('点赞成功')</script>";
-              
+                      $query_recordLiked="UPDATE users SET likedArtical='$current_user_likedArtical' WHERE id=$current_user_id";
+                      mysqli_query($conn,$query_recordLiked);
+                      echo "<script>alert('点赞成功')</script>";
                     }
-
-            
-            } 
-              }
+                  } 
+                }
             }
             
             //每次单机点赞后，页面会刷新并重新显示数据库中点赞数
