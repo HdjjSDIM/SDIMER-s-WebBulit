@@ -46,8 +46,8 @@ else{
       //获取记录,并保存为数组
       $classification = mysqli_fetch_all($result,MYSQLI_ASSOC);?>
       <?php foreach($classification as $classification){ ?>
-        <input type="submit" class="normala2" value="<?php echo $classification['classification_name'];?>"
-         name="fenqu"> 
+        <button type="submit" class="normala2" value="<?php echo $classification['classification_name'];?>"
+         name="fenqu"> <?php echo $classification['classification_name'];?> </button>
          <!--当点击导航栏下方分区按钮时，表单会传递该分区的id告诉浏览器该显示什么-->
          <?php }?>
   </form>
@@ -89,7 +89,7 @@ else{
                 <div class="card">
                   <input type="hidden" value="<?php echo $current_id?>" name="daqu_id"/>
                   <input type="hidden" value="<?php echo $label['uid']?>" name="biaoqian_id"/>
-                  <input type="submit" value="<?php echo $label['label_name']?>" name="biaoqian" class="daquanniu"/>    
+                  <button type="submit" value="<?php echo $label['label_name']?>" name="biaoqian" class="daquanniu"/><?php echo $label['label_name']?></button>
                   <br>
                   <br>
                   <br>
@@ -109,9 +109,9 @@ else{
         if(isset($_GET['biaoqian'])){?>
           <div>
             <form action="" method="post">
-              <input type="submit" value="按发布时间最新排序" name="lattest_btn">
-              <input type="submit" value="按点赞最多排序" name="likest_btn">
-              <input type="submit" value="按收藏最多排序" name="collect_btn">
+              <button type="submit" value="按发布时间最新排序" name="lattest_btn">按发布时间最新排序</button>
+              <button type="submit" value="按点赞最多排序" name="likest_btn">按点赞最多排序</button>
+              <button type="submit" value="按收藏最多排序" name="collect_btn">按收藏最多排序</button>
             </form>
           </div>
           <?php 
@@ -171,7 +171,7 @@ else{
                         </div>
                         <span>发布用户：<?php echo $current_users_name?><span></span>
                         <input type="hidden" value="<?php echo $artical['uid'];?>" name="current_artical_id">
-                        <input type="submit" value="<?php echo $artical['artical_title'];?>" name="current_artical">
+                        <button type="submit" value="<?php echo $artical['artical_title'];?>" name="current_artical"><?php echo $artical['artical_title'];?></button>
                         <div><span><img  src="images/<?php echo $artical['artical_cover'];?>" class="cover" alt="" /></span>
                         <span>摘要：<?php echo $artical['artical_abstract']?></span>
                         <span>发布时间：<?php echo $artical['upload_time']?></span>
