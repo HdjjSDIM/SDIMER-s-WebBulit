@@ -198,9 +198,17 @@ include "connect_to_db_article.php";
 
 
   <div class="box2">
-    <input style="border: none; font-size: 30px;" type="button" value="我的发布">　
-    <input style="border: none; font-size: 30px;text-decoration:underline;" type="button" value="收藏">　　
-    <input style="border: none; font-size: 30px;" type="button" value="设置">　　
+    <a href="Individual_main_space.php">
+      <input style="border: none; font-size: 30px" type="button" value="我的发布">
+    </a>
+    <a href="Individual_collection.php">
+      
+      <input style="border: none; font-size: 30px" type="button" value="收藏">
+    </a>
+    <a href="Individual_space_setting.php">
+
+      <input style="border: none; font-size: 30px" type="button" value="设置">
+    </a>
   </div>
 
 

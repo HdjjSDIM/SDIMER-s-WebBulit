@@ -8,7 +8,7 @@
     // Attach this file in the html page needs to communicate with db.
     
     // Create a mysqli instance. This process is using mysqli but not PDO. If you meet any problem of using mysqli, feel free to contact Chen.
-    $connection = new mysqli("localhost","root","MySQL666!","test");
+    $connection = new mysqli("localhost","root","MySQL666!","sdim");
 
     if(!$connection){
         die("We can not connect to the database. Check the parameters and environment again.");

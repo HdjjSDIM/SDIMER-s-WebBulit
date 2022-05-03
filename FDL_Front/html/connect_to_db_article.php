@@ -9,5 +9,5 @@
     $query_result_information = mysqli_query($connection,$sql);
     
     // We use assoc style here. You can acquire the return information through both numeric id or string key.
-    $information = mysqli_fetch_assoc($query_result_information);
+    $information_article = mysqli_fetch_assoc($query_result_information);
 ?>

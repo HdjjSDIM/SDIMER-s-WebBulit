@@ -1,13 +1,3 @@
-<!-- This file in chinese named 个人空间 设置  -->
-<!-- To avoid rendering problems, I change its name into english -->
-
-<?php
-include "connect_to_db.php";
-include "connect_to_db_user.php"
-// Use $information[xx] to get the information.
-?>
-
-
 <!DOCTYPE html>
 <html>
 
@@ -126,19 +116,42 @@ include "connect_to_db_user.php"
       }
     }
   </style>
-
-  <!-- JS尝试做btn跳转  -->
-  <script>
-    function jump_function() {
-      document.getElementById("btn").innerHTML = "Hello World";
-    }
-  </script>
-
 </head>
 
 <body>
+  <?php
+  include "connect_to_db.php";
+  include "connect_to_db_user.php"
+  // Use $information_user[xx] to get the information_user.
+  ?>
+  <?php
+  if (isset($_POST['btn'])) {
+    echo 'I am a new page!';
+    // $USER_NAME = mysqli_real_escape_string($connection, $_POST["user_name"]);
+    // $USER_PASSWORD = mysqli_real_escape_string($connection, $_POST["user_password"]);
+    // $USER_HOBBY = mysqli_real_escape_string($connection, $_POST["user_hobby"]);
+
+    $USER_NAME = $_POST["user_name"];
+    $USER_PASSWORD = $_POST["user_password"];
+    $USER_HOBBY = $_POST["user_hobby"];
+    // Create SQL sentence using KEYWORD "INSERT INTO"
+    // $sql_tran = "INSERT INTO user(username, password, hobby) VALUES ('$USER_NAME','$USER_PASSWORD','$USER_HOBBY'); ";
+    // Create SQL sentence using KEYWORD "UPDATE". Do not forget to have parameter 'sql_safe_updates' appended to ensure the safety.
+    $sql_tran = "UPDATE users SET username='$USER_NAME', password='$USER_PASSWORD',hobby='$USER_HOBBY' WHERE id = 3";
+
+    // Execute the SQL query, save the information_user and check the result.
+    mysqli_query($connection, $sql_tran);
+  }
+  ?>
 
 
+  <!-- This file in chinese named 个人空间 设置  -->
+  <!-- To avoid rendering problems, I change its name into english -->
+  <?php
+  include "connect_to_db.php";
+  include "connect_to_db_user.php"
+  // Use $information_user[xx] to get the information_user.
+  ?>
 
 
   <div class="topnav">
@@ -172,37 +185,49 @@ include "connect_to_db_user.php"
 
 
   <div class="box1" style="margin: 50px 100px;">
-    <img src="../img/杜证件照2.jpg" width="50" height "50" alt="" />
-    <p1>abc 的空间</p1>
+    <img src="../img/杜证件照2.jpg" width="50" height "50" alt="个人头像 Avatar" />
+    <p1><?php echo ($information_user["username"])?> 的空间</p1>
   </div>
 
   <div class="box2">
-    <input style="border: none; font-size: 30px;" type="button" value="我的发布">q　
-    <input style="border: none; font-size: 30px;" type="button" value="收藏">　　
-    <input style="border: none; font-size: 30px;text-decoration:underline;" type="button" value="设置">　　
+    <a href="Individual_main_space.php">
+      <input style="border: none; font-size: 30px" type="button" value="我的发布">
+    </a>
+    <a href="Individual_collection.php">
+      
+      <input style="border: none; font-size: 30px" type="button" value="收藏">
+    </a>
+    <a href="Individual_space_setting.php">
 
+      <input style="border: none; font-size: 30px" type="button" value="设置">
+    </a>
   </div>
-
   <div class="row">
     <div class="leftcolumn">
       <div class="card">
-        <h1 style="font-family: '华文新魏'">Information Card</h1>
+        <h1 style="font-family: '华文新魏'">information_user Card</h1>
         <span>
-          <strong> 账号（昵称）:</strong>
-          <?php echo ($information["card_number"]) . '&nbsp' . ($information["username"]); //We use non-breaking sp. here in order to make it more elegant.
-          ?>
+          账号（昵称）:
+          <b>
+            <?php echo ($information_user["username"]); //We use non-breaking sp. here in order to make it more elegant.
+            ?>
+          </b>
         </span>
         <br>
         <span>
-          <strong>联系方式:</strong>
-          <?php echo ("email:" . '&nbsp' . $information["email"]) ?>
-          <?php echo ("phone" . '&nbsp' . $information["phone"]); ?>
+          联系方式:
+          <b>
+            <?php echo ("email:" . '&nbsp' . $information_user["email"]) ?>
+            <?php echo ("phone" . '&nbsp' . $information_user["phone"]); ?>
+          </b>
         </span>
         <br>
 
         <span>
-          <strong>爱好／特长：</strong>
-          <?php echo htmlspecialchars($information["hobby"]); ?>
+          爱好／特长：
+          <b>
+            <?php echo htmlspecialchars($information_user["hobby"]); ?>
+          </b>
         </span>
 
         <br>
@@ -225,71 +250,14 @@ include "connect_to_db_user.php"
           <input type="file" id="avaPhoto" name="picture" /></p>
           <!-- Please do not upload the picture when in development stage. I will find some efficient method to store the picture. -->
 
-          <input type="button" value="click" id="btn" onclick="jump_function()">
+          <input type="submit" value="click" name="btn">
           <!-- TODO - button or submit -->
           <input type="reset" value="清空"></p>
         </form>
-        <script>
-          function jump_function() {
-            <?php
-            $USER_NAME = mysqli_real_escape_string($connection, $_POST["user_name"]);
-            $USER_PASSWORD = mysqli_real_escape_string($connection, $_POST["user_password"]);
-            $USER_HOBBY = mysqli_real_escape_string($connection, $_POST["user_hobby"]);
 
-            // Create SQL sentence using KEYWORD "INSERT INTO"
-            // $sql_tran = "INSERT INTO user(username, password, hobby) VALUES ('$USER_NAME','$USER_PASSWORD','$USER_HOBBY'); ";
-            // Create SQL sentence using KEYWORD "UPDATE". Do not forget to have parameter 'sql_safe_updates' appended to ensure the safety.
-            $sql_tran = "UPDATE user SET username='$USER_NAME', password='$USER_PASSWORD',hobby='$USER_HOBBY' WHERE id = 1";
 
-            // Execute the SQL query, save the information and check the result.
-            if (mysqli_query($connection, $sql_tran)) {
-              // successful
-
-              // header('Location: re_login.php'); //TODO - for now we do not have a re_login.php, we use a easy page as a substitute.
-              //上面的这种header方法，由于我们在前面发生了echo,所以无法用header再次指向
-
-              //使用echo js来进行自动跳转
-              $url = "./re_login.php";
-
-              // echo "< script language='javascript' type='text/javascript'>";
-
-              // echo "window.location.href='$url'";
-
-              // echo "< /script>";
-              // echo "<script>window.location.href='$url';</script>";
-              // echo 'reload();';
-            } else {
-              // error
-              echo 'query error - ' . mysqli_errno($connection);
-            }
-            ?>
-          document.refresh.submit();
-          }
-        </script>
       </div>
     </div>
-
-
-
-    <!--
-      <div class="rightcolumn">
-        <div class="card">
-          <h2>关于我</h2>
-          <div class="fakeimg" style="height:100px;">图片</div>
-          <p>关于我的一些信息..</p>
-        </div>
-        <div class="card">
-          <h3>热门文章</h3>
-          <div class="fakeimg"><p>图片</p></div>
-          <div class="fakeimg"><p>图片</p></div>
-          <div class="fakeimg"><p>图片</p></div>
-        </div>
-        <div class="card">
-      <h3>关注我</h3>
-      <p>一些文本...</p>
-    </div>
-  </div>
--->
   </div>
 
   <div class="footer">
