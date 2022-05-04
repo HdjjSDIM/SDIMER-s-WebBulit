@@ -13,7 +13,7 @@ include "connect_to_db_article.php";
 <head>
   <meta charset="utf-8">
   <title>个人空间 主页</title>
-  <link rel="stylesheet" href="../web version 1 (3)(1)/web version 1/css/eg2.css">
+  <!-- <link rel="stylesheet" href="../web version 1 (3)(1)/web version 1/css/eg2.css"> -->
   <style>
     * {
       box-sizing: border-box;
@@ -99,7 +99,7 @@ include "connect_to_db_article.php";
       padding: 30px;
       margin-top: 20px;
       font-family: Arial;
-      height: 250px;
+      /* height: 250px; */
 
     }
 
@@ -118,6 +118,9 @@ include "connect_to_db_article.php";
       margin-top: 20px;
     }
 
+    .artical_information {
+      width: 68%;
+    }
 
     /* 响应式布局 - 屏幕尺寸小于 800px 时，两列布局改为上下布局 */
     @media screen and (max-width: 800px) {
@@ -203,7 +206,7 @@ include "connect_to_db_article.php";
     <div class="leftcolumn">
 
 
-    <!-- Iteration of user's posted/posting article. Return the status of the article and comments from administrator. -->
+      <!-- Iteration of user's posted/posting article. Return the status of the article and comments from administrator. -->
       <?php foreach ($information_article as $post_article) { ?>
 
         <div class="card">
@@ -211,34 +214,37 @@ include "connect_to_db_article.php";
             <img src="../img/银行卡正面.jpg" width="300px" height="180px" alt="" />
           </div><?php echo 'I am here! - Test'; ?>
           <div class="artical_information">
-            <input style="border: none;background-color: white;font-size: 30px;" type="button" value="<?php echo $post_article['artical_title']; ?>">
+            <form action="../../week11_webBulit/文章详细显示.php" method="GET">
+              <input type="hidden" value="<?php echo $post_article['uid']; ?>" name="current_artical_id">
+              <input type="submit" value="<?php echo $post_article['artical_title'] ?>" name="current_artical">
+            </form>
             <br><br>
-            <span style="font-family:'宋体';word-spacing:  4rem;">状态：.&nbsp;.&nbsp;<?php 
-            switch ($post_article['article_status'])
-            {
-            case 0:
-                echo 'Pass';
-                break;
-            case 1:
-                'Checking';
-                break;
-            case 2:
-                echo 'The article is rejected!';
-                break;
-            default:
-                echo "The status is unknown!";
-            }
-            ?> 
-            点赞数：<?php echo $post_article['like_number']; ?>\</span>
-            <span style="font-family: '华文新魏'; padding-right: 150px;float: right">发布时间:&nbsp;<?php echo $post_article['upload_time'];?></span>
+            <span style="font-family:'宋体';word-spacing:  4rem;">状态：.&nbsp;.&nbsp;
+              <?php
+              switch ($post_article['article_status']) {
+                case 0:
+                  echo 'Pass';
+                  break;
+                case 1:
+                  'Checking';
+                  break;
+                case 2:
+                  echo 'The article is rejected!';
+                  break;
+                default:
+                  echo "The status is unknown!";
+              }
+              ?>
+              点赞数：<?php echo $post_article['like_number']; ?>\</span>
+            <span style="font-family: '华文新魏'; padding-right: 150px;float: right">发布时间:&nbsp;<?php echo $post_article['upload_time']; ?></span>
             <br>
             <span style="font-family:'宋体';">　　审核评价</span>
             <input type="button" style="margin-right: 20px; float:right;color: red;" value="取消发布">
-            <h4>　摘要：　<span style="font-family:'宋体';">　<?php echo $post_article['artical_abstract'];?></span></h4>
+            <h4>　摘要：　<span style="font-family:'宋体';">　<?php echo $post_article['artical_abstract']; ?></span></h4>
           </div>
         </div>
-        
-      <?php }?>
+
+      <?php } ?>
 
     </div>
     <div class="rightcolumn">
