@@ -201,30 +201,44 @@ include "connect_to_db_article.php";
 
   <div class="row">
     <div class="leftcolumn">
-      <div class="card">
-        <div class="封面">
-          <img src="../img/银行卡正面.jpg" width="300px" height="180px" alt="" />
 
+
+    <!-- Iteration of user's posted/posting article. Return the status of the article and comments from administrator. -->
+      <?php foreach ($information_article as $post_article) { ?>
+
+        <div class="card">
+          <div class="封面">
+            <img src="../img/银行卡正面.jpg" width="300px" height="180px" alt="" />
+          </div><?php echo 'I am here! - Test'; ?>
+          <div class="artical_information">
+            <input style="border: none;background-color: white;font-size: 30px;" type="button" value="<?php echo $post_article['artical_title']; ?>">
+            <br><br>
+            <span style="font-family:'宋体';word-spacing:  4rem;">状态：.&nbsp;.&nbsp;<?php 
+            switch ($post_article['article_status'])
+            {
+            case 0:
+                echo 'Pass';
+                break;
+            case 1:
+                'Checking';
+                break;
+            case 2:
+                echo 'The article is rejected!';
+                break;
+            default:
+                echo "The status is unknown!";
+            }
+            ?> 
+            点赞数：<?php echo $post_article['like_number']; ?>\</span>
+            <span style="font-family: '华文新魏'; padding-right: 150px;float: right">发布时间:&nbsp;<?php echo $post_article['upload_time'];?></span>
+            <br>
+            <span style="font-family:'宋体';">　　审核评价</span>
+            <input type="button" style="margin-right: 20px; float:right;color: red;" value="取消发布">
+            <h4>　摘要：　<span style="font-family:'宋体';">　<?php echo $post_article['artical_abstract'];?></span></h4>
+          </div>
         </div>
-        <div class="artical_information">
-          <input style="border: none;background-color: white;font-size: 30px;" type="button" value="文章标题">　　
-          <br>
-          <br>
-
-          <span style="font-family:'宋体';word-spacing:  4rem;">　　状态：审核中 点赞数：</span>
-          <span style="font-family: '华文新魏'; padding-right: 150px;float: right">发布时间</span>
-          <br>
-          <span style="font-family:'宋体';">　　审核评价</span>
-
-          <input type="button" style="margin-right: 20px; float:right;color: red;" value="取消发布">
-
-          <h4>　摘要：　<span style="font-family:'宋体';">　这里写摘要</span></h4>
-        </div>
-
-      </div>
-
-
-
+        
+      <?php }?>
 
     </div>
     <div class="rightcolumn">

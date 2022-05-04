@@ -1,6 +1,7 @@
 <?php
+    $witer_id = 1; // Change this value referring to different users / authors
     // SQL sentence to excute the command
-    $sql = "SELECT * FROM user_like_article WHERE article_id = 1";
+    $sql = "SELECT * FROM artical WHERE writer_id = 1";
 
     // If you have cookies reserved, use the command like this:
     // $XXX = XXX

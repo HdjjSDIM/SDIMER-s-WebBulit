@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: sdim
+-- Host: localhost    Database: sdim
 -- ------------------------------------------------------
--- Server version	8.0.29
+-- Server version	8.0.28
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -36,8 +36,9 @@ CREATE TABLE `artical` (
   `writer_id` int NOT NULL,
   `upload_time` varchar(255) NOT NULL,
   `comment` varchar(225) NOT NULL,
+  `article_status` int DEFAULT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +47,7 @@ CREATE TABLE `artical` (
 
 LOCK TABLES `artical` WRITE;
 /*!40000 ALTER TABLE `artical` DISABLE KEYS */;
-INSERT INTO `artical` VALUES (23,'1','1a4a5a6a7a8a9a10a11a12a','啊实打实大苏打的','阿三大苏打大苏打实打实打算萨达萨达飒飒','QQ图片20220409234042.png','sdm283-project-2.pdf',1,0,0,7,'2022-04-30','');
+INSERT INTO `artical` VALUES (23,'1','1a4a5a6a7a8a9a10a11a12a','啊实打实大苏打的','阿三大苏打大苏打实打实打算萨达萨达飒飒','QQ图片20220409234042.png','sdm283-project-2.pdf',1,0,0,7,'2022-04-30','',0),(24,'2','1a','ImissU_test','A','Null','Null',1,1,1,1,'2022-04-30','1',1),(25,'2','4a','Good DAY_test','B','Null','Null',1,9,1,1,'2022-04-30','1',2);
 /*!40000 ALTER TABLE `artical` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -297,4 +298,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-03 16:46:57
+-- Dump completed on 2022-05-04 11:42:25
