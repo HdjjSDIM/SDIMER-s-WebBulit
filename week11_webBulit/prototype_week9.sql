@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
+-- MariaDB dump 10.19  Distrib 10.4.24-MariaDB, for Win64 (AMD64)
 --
--- Host: 127.0.0.1    Database: sdim
+-- Host: localhost    Database: prototype_week9
 -- ------------------------------------------------------
--- Server version	8.0.29
+-- Server version	10.4.24-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,24 +21,23 @@
 
 DROP TABLE IF EXISTS `artical`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `artical` (
-  `uid` int NOT NULL AUTO_INCREMENT,
+  `uid` int(8) NOT NULL AUTO_INCREMENT,
   `artical_classification` varchar(225) NOT NULL,
   `artical_label` varchar(225) NOT NULL,
   `artical_title` varchar(225) NOT NULL,
   `artical_abstract` varchar(255) NOT NULL,
   `artical_cover` varchar(255) NOT NULL,
   `artical_pdf` varchar(255) NOT NULL,
-  `artical_isanonymous` int NOT NULL,
-  `like_number` int NOT NULL,
-  `collection_number` int NOT NULL,
-  `writer_id` int NOT NULL,
+  `artical_isanonymous` int(8) NOT NULL,
+  `like_number` int(8) NOT NULL,
+  `collection_number` int(8) NOT NULL,
+  `writer_id` int(8) NOT NULL,
   `upload_time` varchar(255) NOT NULL,
   `comment` varchar(225) NOT NULL,
-  `article_status` int DEFAULT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +46,7 @@ CREATE TABLE `artical` (
 
 LOCK TABLES `artical` WRITE;
 /*!40000 ALTER TABLE `artical` DISABLE KEYS */;
-INSERT INTO `artical` VALUES (23,'1','1a4a5a6a7a8a9a10a11a12a','啊实打实大苏打的','阿三大苏打大苏打实打实打算萨达萨达飒飒','QQ图片20220409234042.png','sdm283-project-2.pdf',1,0,0,7,'2022-04-30','',0),(24,'2','1a','ImissU_test','A','Null','ImissU.pdf',1,1,1,1,'2022-04-30','1',1),(25,'2','4a','Good DAY_test','B','Null','ImissU.pdf',1,9,1,1,'2022-04-30','1',2);
+INSERT INTO `artical` VALUES (23,'1','1a4a5a6a7a8a9a10a11a12a','啊实打实大苏打的','阿三大苏打大苏打实打实打算萨达萨达飒飒','QQ图片20220409234042.png','sdm283-project-2.pdf',1,0,0,7,'2022-04-30','');
 /*!40000 ALTER TABLE `artical` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,12 +56,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `artical_classification`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `artical_classification` (
-  `uid` int NOT NULL AUTO_INCREMENT,
+  `uid` int(8) NOT NULL AUTO_INCREMENT,
   `classification_name` varchar(255) NOT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -81,13 +80,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `artical_label`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `artical_label` (
-  `uid` int NOT NULL AUTO_INCREMENT,
+  `uid` int(8) NOT NULL AUTO_INCREMENT,
   `label_name` varchar(225) NOT NULL,
   `label_father_uid` varchar(225) NOT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,15 +105,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `comment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `comment` (
-  `uid` int NOT NULL AUTO_INCREMENT,
-  `artical_id` int NOT NULL,
+  `uid` int(8) NOT NULL AUTO_INCREMENT,
+  `artical_id` int(8) NOT NULL,
   `content` varchar(255) NOT NULL,
   `comment_time` varchar(255) NOT NULL,
-  `comment_writerid` int NOT NULL,
+  `comment_writerid` int(8) NOT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,13 +132,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `messages`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `messages` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
   `content` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -158,23 +157,23 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `passedarticle`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `passedarticle` (
-  `uid` int NOT NULL AUTO_INCREMENT,
+  `uid` int(8) NOT NULL AUTO_INCREMENT,
   `artical_classification` varchar(225) NOT NULL,
   `artical_label` varchar(225) NOT NULL,
   `artical_title` varchar(225) NOT NULL,
   `artical_abstract` varchar(255) NOT NULL,
   `artical_cover` varchar(255) NOT NULL,
   `artical_pdf` varchar(255) NOT NULL,
-  `artical_isanonymous` int NOT NULL,
-  `like_number` int NOT NULL,
-  `collection_number` int NOT NULL,
-  `writer_id` int NOT NULL,
+  `artical_isanonymous` int(8) NOT NULL,
+  `like_number` int(8) NOT NULL,
+  `collection_number` int(8) NOT NULL,
+  `writer_id` int(8) NOT NULL,
   `upload_time` varchar(255) NOT NULL,
   `comment` varchar(255) NOT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -193,9 +192,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `passedmessages`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `passedmessages` (
-  `uid` int NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL AUTO_INCREMENT,
   `artical_classification` varchar(225) NOT NULL,
   `artical_label` varchar(255) NOT NULL,
   `artical_title` varchar(225) NOT NULL,
@@ -203,13 +202,13 @@ CREATE TABLE `passedmessages` (
   `artical_cover` varchar(255) NOT NULL,
   `artical_pdf` varchar(255) NOT NULL,
   `artical_isanonymous` varchar(255) NOT NULL,
-  `like_number` int NOT NULL,
-  `collection_number` int NOT NULL,
-  `writer_id` int NOT NULL,
+  `like_number` int(8) NOT NULL,
+  `collection_number` int(8) NOT NULL,
+  `writer_id` int(8) NOT NULL,
   `upload_time` varchar(255) NOT NULL,
   `comment` varchar(255) NOT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=20220410 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20220410 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -227,23 +226,23 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `unpassedarticle`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `unpassedarticle` (
-  `uid` int NOT NULL AUTO_INCREMENT,
+  `uid` int(8) NOT NULL AUTO_INCREMENT,
   `artical_classification` varchar(225) NOT NULL,
   `artical_label` varchar(225) NOT NULL,
   `artical_title` varchar(225) NOT NULL,
   `artical_abstract` varchar(255) NOT NULL,
   `artical_cover` varchar(255) NOT NULL,
   `artical_pdf` varchar(255) NOT NULL,
-  `artical_isanonymous` int NOT NULL,
-  `like_number` int NOT NULL,
-  `collection_number` int NOT NULL,
-  `writer_id` int NOT NULL,
+  `artical_isanonymous` int(8) NOT NULL,
+  `like_number` int(8) NOT NULL,
+  `collection_number` int(8) NOT NULL,
+  `writer_id` int(8) NOT NULL,
   `upload_time` varchar(255) NOT NULL,
   `comment` varchar(255) NOT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -262,21 +261,19 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` text NOT NULL,
   `password` text NOT NULL,
-  `permission` int NOT NULL,
+  `permission` int(11) NOT NULL,
   `nickName` varchar(255) NOT NULL,
   `avatar` varchar(255) NOT NULL,
-  `telephoneNum` int NOT NULL,
-  `hobby` varchar(255) DEFAULT NULL,
+  `telephoneNum` int(11) NOT NULL,
+  `habbits` varchar(255) NOT NULL,
   `likedArtical` varchar(255) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -285,7 +282,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'jason1','jason1',0,'','',0,'basketball','','defrgh','87654356478'),(2,'jason2','',0,'','',0,'PingPong','','defgf','45657'),(3,'123','123',0,'','',0,'123','','1111111111@','4546'),(4,'jason4','',0,'','',0,'','','dfdfgs','453647'),(5,'jason5','55555555',0,'','',0,'','','dsf','3456457'),(6,'jason6','66666666',0,'','',0,'','','ddfd','34564'),(7,'jason7','77777777',1,'','',0,'','22',NULL,'34546'),(8,'jason9','999999999',0,'','',0,'','','efd','23456'),(9,'jsn','123456789',0,'','',0,'','','wdef','1213245'),(10,'jason10','10101010',0,'','',0,'','ef','def','2345'),(11,'jason11','11111111',0,'','',0,'','','efrg','3456'),(12,'12010207','12010207',1,'12010207','',0,'','','efd','3345');
+INSERT INTO `users` VALUES (1,'jason1','jason1',0,'','',0,'',''),(2,'jason2','',0,'','',0,'',''),(3,'jason3','',0,'','',0,'',''),(4,'jason4','',0,'','',0,'',''),(5,'jason5','55555555',0,'','',0,'',''),(6,'jason6','66666666',0,'','',0,'',''),(7,'jason7','77777777',1,'','',0,'','22'),(8,'jason9','999999999',0,'','',0,'',''),(9,'jsn','123456789',0,'','',0,'',''),(10,'jason10','10101010',0,'','',0,'',''),(11,'jason11','11111111',0,'','',0,'',''),(12,'12010207','12010207',1,'12010207','',0,'','');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -298,4 +295,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-04 14:51:37
+-- Dump completed on 2022-05-01 12:16:52
