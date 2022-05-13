@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>SDIMER'S</title>
+    <link href="login.css" rel="stylesheet" type="text/css" />
+</head>
+
+
+<body>
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        <div class="container">
+            <div class="logo">
+                <img class="icon" src="source/pic-1.jpg" />
+            </div>
+
+            <div class="title">SDIMER'S</div>
+
+            <div class="inputs">
+                <label>USERNAME</label>
+                <input type="text" name="username" placeholder="Enter Username" value="<?php if (!empty($username)) echo $username; ?>" />
+                <?php echo  "<span class=error>*" . $errorusername . "</span>"; ?>
+                <label>PASSWORD</label>
+                <input type="password" name="password" placeholder="Enter password" />
+                <?php echo  "<span class=error>*" . $errorpassword . "</span>"; ?>
+
+                <div class="btn-container">
+                    <span class="strip-1"></span>
+                    <span class="strip-2"></span>
+                    <span class="strip-3"></span>
+                    <span class="strip-4"></span>
+                    <span class="strip-5"></span>
+                    <span class="strip-6"></span>
+                    <span class="strip-7"></span>
+                    <button type="submit" class="btn">LOGIN</button>
+                </div>
+            </div>
+            <!-- <div class="line">
+                <a href="#">Forgot password?</a>
+                <span id="dot">.</span>
+                <a href="registerWithCheck.php">Sign Up for SDIMER'S</a>
+            </div> -->
+        </div>
+</body>
+
+
+</html>
