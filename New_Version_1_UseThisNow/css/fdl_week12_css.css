@@ -1,14 +1,14 @@
-*{
-  margin:0;
-  padding:0;  
-  font-family: 'ZCOOL XiaoWei', serif;
+* {
+    margin: 0;
+    padding: 0;
+    /* font-family: 'ZCOOL XiaoWei', serif; */
 }
 
-body{
-  margin: 0;
-  min-height: 100vh;
-  background-color:rgb(234,234,234);
-/*
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: rgb(234, 234, 234);
+    /*
   background-image: 
     radial-gradient(closest-side, rgb(243, 151, 132), rgba(235, 105, 78, 0)),
     radial-gradient(closest-side, rgb(240, 112, 197), rgba(243, 11, 164, 0)),
@@ -33,369 +33,398 @@ body{
 */
 }
 
-body::after {
-  content: '';
-  display: block;
-  /* position: fixed; */
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  /* backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); */
-}
+
+/* body::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+} */
+
+
+/* position: fixed; */
+
+
+/* backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px); */
 
 @keyframes movement {
-  0%, 100% {
-    background-size: 
-      130vmax 130vmax,
-      80vmax 80vmax,
-      90vmax 90vmax,
-      110vmax 110vmax,
-      90vmax 90vmax;
-    background-position:
-      -80vmax -80vmax,
-      60vmax -30vmax,
-      10vmax 10vmax,
-      -30vmax -10vmax,
-      50vmax 50vmax;
-  }
-  25% {
-    background-size: 
-      100vmax 100vmax,
-      90vmax 90vmax,
-      100vmax 100vmax,
-      90vmax 90vmax,
-      60vmax 60vmax;
-    background-position:
-      -60vmax -90vmax,
-      50vmax -40vmax,
-      0vmax -20vmax,
-      -40vmax -20vmax,
-      40vmax 60vmax;
-  }
-  50% {
-    background-size: 
-      80vmax 80vmax,
-      110vmax 110vmax,
-      80vmax 80vmax,
-      60vmax 60vmax,
-      80vmax 80vmax;
-    background-position:
-      -50vmax -70vmax,
-      40vmax -30vmax,
-      10vmax 0vmax,
-      20vmax 10vmax,
-      30vmax 70vmax;
-  }
-  75% {
-    background-size: 
-      90vmax 90vmax,
-      90vmax 90vmax,
-      100vmax 100vmax,
-      90vmax 90vmax,
-      70vmax 70vmax;
-    background-position:
-      -50vmax -40vmax,
-      50vmax -30vmax,
-      20vmax 0vmax,
-      -10vmax 10vmax,
-      40vmax 60vmax;
-  }
+    0%,
+    100% {
+        background-size: 130vmax 130vmax, 80vmax 80vmax, 90vmax 90vmax, 110vmax 110vmax, 90vmax 90vmax;
+        background-position: -80vmax -80vmax, 60vmax -30vmax, 10vmax 10vmax, -30vmax -10vmax, 50vmax 50vmax;
+    }
+    25% {
+        background-size: 100vmax 100vmax, 90vmax 90vmax, 100vmax 100vmax, 90vmax 90vmax, 60vmax 60vmax;
+        background-position: -60vmax -90vmax, 50vmax -40vmax, 0vmax -20vmax, -40vmax -20vmax, 40vmax 60vmax;
+    }
+    50% {
+        background-size: 80vmax 80vmax, 110vmax 110vmax, 80vmax 80vmax, 60vmax 60vmax, 80vmax 80vmax;
+        background-position: -50vmax -70vmax, 40vmax -30vmax, 10vmax 0vmax, 20vmax 10vmax, 30vmax 70vmax;
+    }
+    75% {
+        background-size: 90vmax 90vmax, 90vmax 90vmax, 100vmax 100vmax, 90vmax 90vmax, 70vmax 70vmax;
+        background-position: -50vmax -40vmax, 50vmax -30vmax, 20vmax 0vmax, -10vmax 10vmax, 40vmax 60vmax;
+    }
 }
 
-a{
-  font-style: black;
-  text-decoration:none;
-  list-style: none;
+a {
+    font-style: black;
+    text-decoration: none;
+    list-style: none;
 }
 
-li{
-  list-style: none;
+li {
+    list-style: none;
 }
-a{color:black} /*设置默认颜色*/
-a:link {color:gray;} /*未访问颜色*/
-a:visited {color:gray;} /*已访问颜色*/
-a:hover {color:red;} /*悬浮（鼠标经过）时颜色*/
-a:active {color:yellow;} /*点击时的颜色*/
 
-body{
-  position: relative;
-  margin: 0;
+a {
+    color: black
 }
-.usericon{
-  display: block;
-  height: 66.8px;
+
+
+/*设置默认颜色*/
+
+a:link {
+    color: gray;
 }
+
+
+/*未访问颜色*/
+
+a:visited {
+    color: gray;
+}
+
+
+/*已访问颜色*/
+
+a:hover {
+    color: blue;
+}
+
+
+/*悬浮（鼠标经过）时颜色*/
+
+a:active {
+    color: yellow;
+}
+
+
+/*点击时的颜色*/
+
+body {
+    position: relative;
+    margin: 0;
+}
+
+.usericon {
+    display: block;
+    height: 66.8px;
+}
+
 .icon {
-  height: 56.8px;
-  width: 56.8px;
-  border-radius: 50%;
-  padding: 0;
-
+    height: 56.8px;
+    width: 56.8px;
+    border-radius: 50%;
+    padding: 0;
 }
 
-nav{
-  display: flex; /* Create a flex container and its default value is row  */
-  padding: 0.5% 1%; /* 第一个值是上边和下边的内边距，第二个值是左边右边的内边距*/
-  justify-content: space-between;
-  align-items: center;
-  height: 58px;
-  background-repeat: no-repeat;   
-  background-size: 100%;     
-  /* border-bottom: solid black; */
-  background-color: white;
-  box-shadow: 0 1px 3px rgb(18 18 18 / 10%);
+nav {
+    display: flex;
+    /* Create a flex container and its default value is row  */
+    padding: 0.5% 1%;
+    /* 第一个值是上边和下边的内边距，第二个值是左边右边的内边距*/
+    justify-content: space-between;
+    align-items: center;
+    height: 58px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    /* border-bottom: solid black; */
+    background-color: white;
+    box-shadow: 0 1px 3px rgb(18 18 18 / 10%);
 }
-nav img{
-  width: 150px;
+
+nav img {
+    width: 150px;
 }
-.nav-links{
-  flex: 1;
-  text-align: right;
-  font-style: black;
-  /* font-size: 5px; */
-  /* I have tried to change the font-size in father box to make icons visible but failed */
+
+.nav-links {
+    flex: 1;
+    text-align: right;
+    font-style: black;
+    /* font-size: 5px; */
+    /* I have tried to change the font-size in father box to make icons visible but failed */
 }
+
 .nav-links ul li {
-  list-style: none;
-  display: inline-block;
-  padding: 8px 12px;
-  position: relative;
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
 }
-.nav-links ul li a{
-  color: black;
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight:bold;
+
+.nav-links ul li a {
+    color: black;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
 }
-.nav-links ul li::after{
-  content: '';
-  width: 0%;
-  height:1px;
-  background: #f44336;
-  display: block;
-  margin: auto;
-  transition: 0.5s;
+
+.nav-links ul li::after {
+    content: '';
+    width: 0%;
+    height: 1px;
+    background: #f44336;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
 }
-.nav-links ul li:hover::after{
-  width: 100%;
+
+.nav-links ul li:hover::after {
+    width: 100%;
 }
-.btn-container{
-  /* top: 50%;
+
+.btn-container {
+    /* top: 50%;
   left: 7%;
   transform: translate(-50%,-50%);
   text-align: left;
 display: block; */
-/* margin: 0 auto ; */
-/* box-shadow: 0 1.5px 7.5px 0.5px gray; */
-/* border-radius: 5px; */
-  display: inline;
-margin: auto 0;
-position: absolute;
-overflow: hidden;
-/* box-shadow: 0 1.5px 7.5px 0.5px gray; */
-/* border-radius: 5px; */
-z-index:2;
+    /* margin: 0 auto ; */
+    /* box-shadow: 0 1.5px 7.5px 0.5px gray; */
+    /* border-radius: 5px; */
+    display: inline;
+    margin: auto 0;
+    position: absolute;
+    overflow: hidden;
+    /* box-shadow: 0 1.5px 7.5px 0.5px gray; */
+    /* border-radius: 5px; */
+    z-index: 2;
 }
 
-.btn{
-position: relative;
-background-color: transparent;
-padding:15px 30px;
-font-size: 2rem;
-font-family:"Eras Bold","Eras Bold itc","Eras Bold ITC",'Montserrat', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-border:none;
-transition: 1s;
-color: black;
+.btn {
+    position: relative;
+    background-color: transparent;
+    padding: 15px 30px;
+    font-size: 2rem;
+    font-family: "Eras Bold", "Eras Bold itc", "Eras Bold ITC", 'Montserrat', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border: none;
+    transition: 1s;
+    color: black;
 }
 
-.strip-1,.strip-2,.strip-3,.strip-4,.strip-5,.strip-6,.strip-7{
-height: 250px;
-width: 35px;
-z-index: -1;
-position: absolute;
+.strip-1,
+.strip-2,
+.strip-3,
+.strip-4,
+.strip-5,
+.strip-6,
+.strip-7 {
+    height: 250px;
+    width: 35px;
+    z-index: -1;
+    position: absolute;
 }
 
-.strip-1{
-transition: 1s;
-background-color: violet;
-transform: rotate(-45deg) translate(-150px,0);
+.strip-1 {
+    transition: 1s;
+    background-color: violet;
+    transform: rotate(-45deg) translate(-150px, 0);
 }
 
-.strip-2{
-transition: 1s;
-top: -25px;
-left: 10px;
-background-color: rgb(124, 55, 124);
-transform: rotate(-45deg) translate(-150px,15px);
+.strip-2 {
+    transition: 1s;
+    top: -25px;
+    left: 10px;
+    background-color: rgb(124, 55, 124);
+    transform: rotate(-45deg) translate(-150px, 15px);
 }
+
 .strip-3 {
-transition: 1s;
-top: -50px;
-left: 20px;
-background-color: blue;
-transform: rotate(-45deg) translate(-150px , 30px);
+    transition: 1s;
+    top: -50px;
+    left: 20px;
+    background-color: blue;
+    transform: rotate(-45deg) translate(-150px, 30px);
 }
 
 .strip-4 {
-transition: 1s;
-top: -75px;
-left: 30px;
-background-color: green;
-transform: rotate(-45deg) translate(-150px , 45px);
+    transition: 1s;
+    top: -75px;
+    left: 30px;
+    background-color: green;
+    transform: rotate(-45deg) translate(-150px, 45px);
 }
 
 .strip-5 {
-transition: 1s;
-top: -100px;
-left: 40px;
-background-color: yellow;
-transform: rotate(-45deg) translate(-150px , 60px);
+    transition: 1s;
+    top: -100px;
+    left: 40px;
+    background-color: yellow;
+    transform: rotate(-45deg) translate(-150px, 60px);
 }
 
 .strip-6 {
-transition: 1s;
-top: -125px;
-left: 50px;
-background-color: orange;
-transform: rotate(-45deg) translate(-150px , 75px);
+    transition: 1s;
+    top: -125px;
+    left: 50px;
+    background-color: orange;
+    transform: rotate(-45deg) translate(-150px, 75px);
 }
 
 .strip-7 {
-transition: 1s;
-top: -150px;
-left: 60px;
-background-color: red;
-transform: rotate(-45deg) translate(-150px , 90px);
+    transition: 1s;
+    top: -150px;
+    left: 60px;
+    background-color: red;
+    transform: rotate(-45deg) translate(-150px, 90px);
 }
 
-.btn:hover{
-color:white;
-cursor: pointer;
+.btn:hover {
+    color: white;
+    cursor: pointer;
 }
 
-.btn::before{
-content: '';
-font-style: white;
-background-color: black;
-position:absolute;
-top:0;
-left:0;
-right:0;
-bottom:0;
-z-index:-1;
-opacity:0;
-transition: 1s;
+.btn::before {
+    content: '';
+    font-style: white;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    opacity: 0;
+    transition: 1s;
 }
 
-.btn:hover::before{
-opacity: 0.25;
+.btn:hover::before {
+    opacity: 0.25;
 }
 
-.btn-container:hover .strip-1{
-transform:rotate(-45deg) translate(40px,0px);
+.btn-container:hover .strip-1 {
+    transform: rotate(-45deg) translate(40px, 0px);
 }
 
 .btn-container:hover .strip-2 {
-transform: rotate(-45deg) translate(45px , 15px);
+    transform: rotate(-45deg) translate(45px, 15px);
 }
 
 .btn-container:hover .strip-3 {
-transform: rotate(-45deg) translate(50px , 30px);
+    transform: rotate(-45deg) translate(50px, 30px);
 }
 
 .btn-container:hover .strip-4 {
-transform: rotate(-45deg) translate(55px , 45px);
+    transform: rotate(-45deg) translate(55px, 45px);
 }
 
 .btn-container:hover .strip-5 {
-transform: rotate(-45deg) translate(60px , 60px);
+    transform: rotate(-45deg) translate(60px, 60px);
 }
 
 .btn-container:hover .strip-6 {
-transform: rotate(-45deg) translate(65px , 75px);
+    transform: rotate(-45deg) translate(65px, 75px);
 }
 
 .btn-container:hover .strip-7 {
-transform: rotate(-45deg) translate(70px , 90px);
+    transform: rotate(-45deg) translate(70px, 90px);
 }
 
-.secondnav{
-  text-align: center;
-  top: 20px;
-  position: sticky;
-  z-index: 999;
+.secondnav {
+    text-align: center;
+    top: 20px;
+    position: sticky;
+    z-index: 999;
 }
 
-.normala2{
-  border: none;
-  background: none;
+.normala2 {
+    border: none;
+    background: none;
 }
 
-.secondnav .normala2:hover{
-background: violet;
+.secondnav .normala2:hover {
+    background: violet;
 }
 
-.normala2{
-  font-size: 1.5rem;
+.normala2 {
+    font-size: 1.5rem;
 }
+
+
 /* 创建两列 */
-/* Left column */
-.leftcolumn {   
-	margin: 2% 15%;
-  width: 70%;
-	
-}
- 
-/* 右侧栏 */
-.rightcolumn {
-  float: right;
-  width: 25%;
-  background-color: #f1f1f1;
-  padding-left: 20px;
-}
- 
-/* 图像部分 */
-.fakeimg {
-  background-color: #aaa;
-  width: 90%;
-	margin: 0 5%;
-  padding: 80px;
-	height:300px
-}
- 
-/* 文章卡片效果 */
-.card {
 
-	background:#FFF9F9;
-	padding: 30px;
-	margin-top: 20px;
-	font-family: Arial;
-	height: 150px;
-transition: all 0.5s;
-	border-radius: 25px;
+
+/* Left column */
+
+.leftcolumn {
+    margin: 2% 15%;
+    width: 70%;
 }
-  .card:hover{
-	box-shadow: 0 0 20px 0px rgba(255, 0, 0, 0.2);
+
+
+/* 右侧栏 */
+
+.rightcolumn {
+    float: right;
+    width: 25%;
+    background-color: #f1f1f1;
+    padding-left: 20px;
+}
+
+
+/* 图像部分 */
+
+.fakeimg {
+    background-color: #aaa;
+    width: 90%;
+    margin: 0 5%;
+    padding: 80px;
+    height: 300px
+}
+
+
+/* 文章卡片效果 */
+
+
+/* .card {
+    background: #FFF9F9;
+    padding: 30px;
+    margin-top: 20px;
+    font-family: Arial;
+    height: 150px;
+    transition: all 0.5s;
+    border-radius: 25px;
+}
+
+.card:hover {
+    box-shadow: 0 0 20px 0px rgba(255, 0, 0, 0.2);
     transform: scale(1.06);
-	transition: all 0.5s;      transition: all 0.5s;
-}
-	
+    transition: all 0.5s;
+    transition: all 0.5s;
+} */
+
 .封面 {
-	width: 25%;
-	float: left;
-	margin-bottom:50px;
+    width: 25%;
+    float: left;
+    margin-bottom: 50px;
 }
- 
+
+
 /* 列后面清除浮动 */
+
 .row:after {
-  content: "";
-  display: table;
-  clear: both;
+    content: "";
+    display: table;
+    clear: both;
 }
- 
+
+
 /* 底部 */
+
 .footer {
     padding: 20px;
     text-align: center;
@@ -403,86 +432,80 @@ transition: all 0.5s;
     margin-top: 20px;
 }
 
- 
+
 /* 响应式布局 - 屏幕尺寸小于 800px 时，两列布局改为上下布局 */
-@media screen and (max-width: 800px) {
 
-}
- 
+@media screen and (max-width: 800px) {}
+
+
 /* 响应式布局 -屏幕尺寸小于 400px 时，导航等布局改为上下布局 */
+
 @media screen and (max-width: 400px) {
-  .topnav a {
-    float: none;
-    width: 100%;
-  }
+    .topnav a {
+        float: none;
+        width: 100%;
+    }
 }
-
-
 
 .box1 {
-	margin-top: 50px;
-	margin-left: 10%;
+    margin-top: 50px;
+    margin-left: 10%;
 }
 
 .information_card {
-	line-height: 20px;
-	font-size: 18px;
+    line-height: 20px;
+    font-size: 15px;
 }
 
-
-
 .tou_xiang {
-	
-	width: 30%;
-	padding-left:10%;
-	float: left;
-	
+    width: 30%;
+    padding-left: 10%;
+    float: left;
 }
 
 .name_zone {
-	padding-top: 20px ;
-	font-size: 20px;
-	width: 230px;
-	text-align: center;
+    padding-top: 20px;
+    font-size: 20px;
+    width: 230px;
+    text-align: center;
 }
 
-.tou_xiag {
-	
-}
+.tou_xiag {}
 
 .artical_information {
-	line-height: 30px;
+    line-height: 30px;
 }
 
 .button_1 {
-	margin-right: 20px; 
-	float:right;
-	color: red;
-	height: 30px; 
-	width: 80px;
-	background: none;
+    margin-right: 20px;
+    float: right;
+    color: red;
+    height: 30px;
+    width: 80px;
+    background: none;
 }
 
 .zone_classify {
-	background: none;
-	border: none;
-	width: 150px;
-	height: 40px;
-	font-size: 30px;
+    background: none;
+    border: none;
+    width: 150px;
+    height: 40px;
+    font-size: 30px;
+    padding-right: 10px;
 }
 
 .biao_ti {
-	margin:50px 10%;
-	padding-top: 10px;
-	width: 80%;
-	background: #B7B7B7;
-	height: 30px;
-	text-align: center;
+    margin: 50px 10%;
+    padding-top: 10px;
+    width: 80%;
+    background: #B7B7B7;
+    height: 30px;
+    text-align: center;
 }
 
 .not {
-	height:20px;
+    height: 20px;
     float: right;
-  	margin: 0 20px;	
-	width: 200px;
+    margin: 0 20px;
+    width: 200px;
 }

@@ -22,7 +22,6 @@
       $current_user_username="";
       $current_user_id="";
     }
-    
   ?>
   <!-- <div class="header">
     <h1>我的网页</h1>
@@ -72,7 +71,6 @@
       }
     }
     //取出所有的user信息
-    
     $conn = mysqli_connect($host,$user,$dbpassword,$dbname);
     $sql = 'SELECT * FROM users';
     $result = mysqli_query($conn,$sql); 
@@ -82,8 +80,11 @@
         $current_user=$users1;
       }
     }
+    
      
   ?>
+  
+  <!-- 取出所有评论 -->
   <?php
     //连接到数据库
     $conn = mysqli_connect($host,$user,$dbpassword,$dbname);
@@ -114,61 +115,35 @@
       <?php if($current_user_permission==1||$current_user_permission==0){ ?>
         <div>
           <form action="" method="post">
-            <button type="submit" id="like_btn" name="btn_like" class="" > like </button>
-            <script>
-              $("#btn").attr("disabled","true");
-              $("#btn").attr("disabled","disabled");
-              $("#btn").attr("disabled","false");
-              $("#btn").removeAttr("disabled","disabled");
-          </script>
+            <button type="submit" name="btn_like" class="like_btn" > 干得漂亮！*<?php echo $showing_artical['like_number'];//显示点赞数?> </button>
             <?php
             if(isset($_POST['btn_like'])){
                 $uid=$showing_artical['uid'];
               $conn = mysqli_connect($host,$user,$dbpassword,$dbname);
               $query ="UPDATE passedarticle SET like_number=like_number+1 WHERE uid=$uid";
               mysqli_query($conn,$query);
-              
-              
-              
-             
-              if($current_user_likedArtical==null){
-                $query_recordLiked="UPDATE users SET likedArtical=$uid WHERE id=$current_user_id";
-              mysqli_query($conn,$query_recordLiked);
-              echo "<script>alert('初次点赞成功')</script>";
-                }
-                else{
-                  $arrayLiked_old=explode("a", $current_user_likedArtical);
-                  foreach ($arrayLiked_old as $articalId){
-                    if($articalId==$uid){
-                      
-                    }
-                    else{
-                      $current_user_likedArtical .="a" .$uid;
-              $query_recordLiked="UPDATE users SET likedArtical='$current_user_likedArtical' WHERE id=$current_user_id";
-              mysqli_query($conn,$query_recordLiked);
-              echo "<script>alert('点赞成功')</script>";
-              
-                    }
-
-            
-            } 
-              }
             }
             
             //每次单机点赞后，页面会刷新并重新显示数据库中点赞数
+            $current_artical_id=$_GET['current_artical_id'];
+            //连接到数据库
             $conn = mysqli_connect($host,$user,$dbpassword,$dbname);
-            $sql = 'SELECT * FROM artical';
+            //检查连接是否成功
+            if(!$conn){
+            echo '连接错误：'.mysqli_connect_error();
+            }
+            //向数据表orders发起一个检索，获取所有下单信息
+            $sql = 'SELECT * FROM passedarticle';
+            //执行插入的查询语句
             $result = mysqli_query($conn,$sql); 
-            $artical = mysqli_fetch_all($result,MYSQLI_ASSOC);
-            foreach($artical as $artical){
-              if($artical['uid']==$showing_artical['uid']){
-                $showing_artical=$artical;
+            //获取记录,并保存为数组
+            $current_artical = mysqli_fetch_all($result,MYSQLI_ASSOC);
+            foreach($current_artical as $u){
+              if($u['uid']==$_GET['current_artical_id']){
+                $showing_artical=$u;
               }
             }
           ?>
-            <div>
-              <?php echo $showing_artical['like_number'];//显示点赞数?>
-            </div>
           </form>
         </div>
         <?php
@@ -194,18 +169,15 @@
         <form action="" method="post" name="comment_form">
           <div class="replytext">
             <input type="text" class="reply" placeholder="发表你的评论！" name="comment" autocomplete="off">
-            <input type="submit" button class="replybtt" name="comment_btn">
-            <i>回！</i>
+            <input type="submit" button class="replybtt" name="comment_btn" value="发表高见">
             </button>
           </div>
         </form>
       </div>
+      
       <?php
         $conn = mysqli_connect($host,$user,$dbpassword,$dbname);
         //检查连接是否成功
-        if(!$conn){
-          echo '连接错误：'.mysqli_connect_error();
-        }
         //向数据表orders发起一个检索，获取所有下单信息
         $sql = 'SELECT * FROM comment';
         //执行插入的查询语句
@@ -213,11 +185,16 @@
         //获取记录,并保存为数组
         $comment = mysqli_fetch_all($result,MYSQLI_ASSOC);
         foreach($comment as $comment){
+          $current_comment_id=$comment['uid'];
           if($comment['artical_id']==$showing_artical['uid']){ ?>
       <div class="card">
         <div class="lou">
           <h2>
-            <?php echo $current_user_username?>
+            <?php foreach($users as $users1){?>
+              <?php if($users1['id']==$comment['comment_writerid']){ ?>
+                <?php echo $users1['nickName'];break;?>
+              <?php }?>
+            <?php }?>
           </h2>
           <?php echo $comment['comment_time']?>
           </h5>
@@ -229,6 +206,22 @@
         </div>
         <p>
           <?php echo $comment['content']; ?>
+        </p>
+        <p>
+          <?php if($current_user_id==$comment['comment_writerid']){ ?>
+            <form action="" method="post">
+              <input type="submit" class="deletbtt" value="删除" name="deletbtt_<?php echo $comment['uid'];?>">
+            </form>
+          <?php }?>
+          <!-- 检测是否删除评论 -->
+          <?php 
+            $delet_btt_name='deletbtt_'. $comment['uid'];
+            if(isset($_POST[$delet_btt_name])){
+              echo"再点击我一次我才会消失";
+              $conn = mysqli_connect($host, $user, $dbpassword, $dbname);
+              mysqli_query($conn,"DELETE FROM comment WHERE uid=$current_comment_id");
+            }
+          ?>
         </p>
       </div>
       <?php }
@@ -242,7 +235,7 @@
           <img class="icon" src="images/icon.jpg" />
       </a>
       <div class="lou">
-        <h2><?php if($showing_artical['artical_isanonymous']==0){echo $current_user['username'];} else{echo "unknown"; }?></h2>
+        <h2><?php if($showing_artical['artical_isanonymous']==0){echo"作者：";echo $current_user['nickName'];} else{echo "unknown"; }?></h2>
       </div>
       <p>爱好：<?php echo $current_user['habbits']?></p>
       <ul>

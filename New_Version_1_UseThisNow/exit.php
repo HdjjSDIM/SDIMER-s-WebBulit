@@ -13,7 +13,7 @@ session_start();
     session_destroy();
 // }
 //location首部使浏览器重定向到另一个页面
-$home_url = 'login1.1.php';
+$home_url = 'login.php';
 header('Location:'.$home_url);
 
 

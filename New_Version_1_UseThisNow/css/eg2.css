@@ -126,6 +126,8 @@ body{
 .usericon{
   display: block;
   height: 66.8px;
+  /* border:solid blue 1px; */
+  /* border-radius: 50%; */
 }
 .icon {
   height: 56.8px;
@@ -184,6 +186,7 @@ nav img{
 }
 .nav-links ul li:hover::after{
   width: 100%;
+  cursor:pointer;/*鼠标变小手*/
 }
 
 .btn-container{
@@ -278,6 +281,7 @@ transform: rotate(-45deg) translate(-150px , 90px);
 .btn:hover{
 color:white;
 cursor: pointer;
+cursor:pointer;/*鼠标变小手*/
 }
 
 .btn::before{
@@ -340,7 +344,9 @@ transform: rotate(-45deg) translate(70px , 90px);
 
 .secondnav .normala2:hover{
 background: violet;
+cursor:pointer;/*鼠标变小手*/
 }
+
 
 .normala2{
   font-size: 1.5rem;
@@ -493,12 +499,14 @@ background: violet;
     /* box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2); */
     box-shadow: 0 0 20px 0px rgba(255, 0, 0, 0.2);
     transform: scale(1.06);
+    cursor:pointer;/*鼠标变小手*/
 }
 
 .card2:hover{
   /* box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2); */
   box-shadow: 0 0 20px 0px rgba(255, 0, 0, 0.2);
   transform: scale(1.06);
+  cursor:pointer;/*鼠标变小手*/
 }
 
 
@@ -568,6 +576,7 @@ background: violet;
     background: none;
     font-size: 2rem;
     text-align: left;
+    color:#4451C8;
   }
 
   .artil{
@@ -633,6 +642,58 @@ background: violet;
     text-align: center;
     background: #ddd;
     margin-top: 20px;
+  }
+  .text-box{
+    width: 90%;
+    /* color: #fff;  */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    /* background-image: linear-gradient(rgba(51, 53, 60, 0.7),rgba(4,9,30,0.7)),url(../source/q4.png); */
+  }
+  .header{
+    min-height: 100vh;  
+    /* vh stands for viewport height */
+    width: 100%;
+    margin:0px auto;
+    overflow: hidden;
+    background-image:url(../source/q4.png);
+    /* background-image: url(../source/q4.png); */
+    background-size: cover ;
+    background-position: center;
+    position: relative;
+  }
+  .btn-containernew{
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    display: block;
+    /* margin: 0 auto ; */
+    position: absolute;
+    overflow: hidden;
+    /* box-shadow: 0 1.5px 7.5px 0.5px gray; */
+    /* border-radius: 5px; */
+    z-index:2;
+  }
+  .card3 {
+	  width: 100%;
+/*	margin-bottom: 50px;*/
+		padding: 10px 30px;
+		border:2px solid #C7C7C7;
+		background:#F2F2F2;
+		height: 120px;
+  }
+  .artname:hover{
+    color:black;
+    cursor:pointer;/*鼠标变小手*/
+  }
+
+  .navigationbar{
+    text-align: center;
+    color:#4451C8;
   }
 
   /* 响应式布局 - 屏幕尺寸小于 800px 时，两列布局改为上下布局 */
