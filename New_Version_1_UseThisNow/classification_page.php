@@ -50,6 +50,7 @@ else{
 </div>
       
       <?php if(isset($_GET['fenqu'])){ //以下是为了读取当前分区id并在数据库中找出对应的标签?> 
+        <h1 class="navigationbar"><?php echo $_GET['fenqu'];?></h1>
         <?php
           $conn = mysqli_connect($host,$user,$dbpassword,$dbname);//下面是为了获得当前分区的id
           //检查连接是否成功
@@ -91,11 +92,11 @@ else{
                           <input type="submit" value="<?php echo $label['label_name']?>" name="biaoqian" class="daquanniu"/>
                         </div>
                       </h2>
-                      <h3 class="cardqu" style="color:rgb(255, 40, 40) ;"><专区></h3>
+                      <h3 class="cardqu" style="color:rgb(255, 40, 40) ;"></h3>
                       <!-- <div class="daquname">
                         <input type="submit" value="游戏" name="biaoqian" class="daquanniu"/>
                       </div>
-                      <!-- <h3 class="cardqu">专区</h3> --> 
+                      <!-- <h3 class="cardqu"></h3> --> 
                       <p class="carddis"><?php echo $label['label_infor']?></p>
                       
                       <!-- <ul style="float: left;margin: 20px 0;"> 
@@ -129,6 +130,25 @@ else{
       <?php
          //当点击大区内具体某个标签时，就会显示该标签下有哪些文章
         if(isset($_GET['biaoqian'])){?>
+        <?php
+          $conn = mysqli_connect($host,$user,$dbpassword,$dbname);//下面是为了获得当前分区的id
+          //检查连接是否成功
+          if(!$conn){
+            echo '连接错误：'.mysqli_connect_error();
+          }
+          //向数据表orders发起一个检索，获取所有下单信息
+          $sql = 'SELECT * FROM artical_classification';
+          //执行插入的查询语句
+          $result = mysqli_query($conn,$sql); 
+          //获取记录,并保存为数组
+          $classification = mysqli_fetch_all($result,MYSQLI_ASSOC);
+        ?>
+        <?php foreach($classification as $classification2){
+          if($classification2['uid']==$_GET['daqu_id']){
+            $current_classification=$classification2['classification_name'];
+          }
+        }?>
+          <h2 class="navigationbar"><?php echo $current_classification;?>><?php echo $_GET['biaoqian'];?></h2>
           <div>
             <form action="" method="post">
               <button type="submit" value="按发布时间最新排序" name="lattest_btn" class="paixu">按发布时间最新排序</button>
@@ -183,7 +203,7 @@ else{
                           $current_users_name=$users1['username'];
                         }
                     }?>
-                    <div class="card2">
+                    <div class="card3">
                       <form action="article_show.php" method="get">
                         <div class="artpicm">
                           <a href="#" style="float:left" class="artpicb">
@@ -225,5 +245,30 @@ else{
             </div>
           </div>    
         <?php }?>
+      <?php if(!isset($_GET['fenqu'])&&!isset($_GET['biaoqian'])){ ?>
+        <!-- 显示主页内容 -->
+        <section id="qaq" class="header">
+          <div class="text-box">
+            <h1>南方科技大学 创园一栋</h1>
+            <br>
+            <p>世界创新的风口，中国创新的引擎，深圳创新的中心</p>
+            <!-- <a href="" class = "click-btn" 点击发现一个新世界 -->
+            <!-- <a href="#qwq" class="click-btn">点击发现一个新世界</a> -->
+          </div>
+          <div class="btn-containernew">
+              <span class="strip-1"></span>
+              <span class="strip-2"></span>
+              <span class="strip-3"></span>
+              <span class="strip-4"></span>
+              <span class="strip-5"></span>
+              <span class="strip-6"></span>
+              <span class="strip-7"></span>
+              <form action="" method="get">
+              <button type="submit" class="btn" value="大二（上）课程"
+              name="fenqu"> GO SDIMER'S! </button>
+              </form>
+          </div>
+        </section>
+      <?php }?>
 </body>
 </html>

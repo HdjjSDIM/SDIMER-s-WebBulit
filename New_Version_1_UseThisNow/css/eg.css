@@ -330,17 +330,13 @@ transform: rotate(-45deg) translate(70px , 90px);
 .normala2{
   border: none;
   background: none;
-  font-style: red;
-  color: red;
+  font-size: 1.5rem;
 }
 
 .secondnav .normala2:hover{
 background: violet;
 }
 
-.normala2{
-  font-size: 1.5rem;
-}
 
 .row{
   overflow: auto;
@@ -377,10 +373,6 @@ background: violet;
     height: 80%;
     width: 100%; 
     text-align: left top;
-  }
-
-  .replybtt{
-    float: right;
   }
 
   .lou{
@@ -501,7 +493,50 @@ background: violet;
 
     clear: both;
   }
-   
+  /* 点赞按钮 */
+  .like_btn{
+    border-color: transparent;
+    background: rgba(0,102,255,.1);
+    color: #06f;
+    cursor: pointer;
+    height:30px;
+    width: 120px;
+    border-radius: 15px;
+    font-size: 15px;
+    }
+  .like_btn:hover{
+    color:#FF0004;
+    font-size: 16px;
+    transition: 0.5s;
+    }
+    /* 评论回复按钮 */
+  .replybtt{
+    border-color: transparent;
+    font-size: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 30px;
+    cursor: pointer;
+    color: #06f;
+  
+  }
+  .replybtt:hover{
+      color: #06f;
+  }
+      
+   /* 删除评论按钮 */
+  .deletbtt{
+  border-color: transparent;
+  font-size: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 30px;
+  cursor: pointer;
+  color: #06f;
+  }
+  .deletbtt:hover{
+      color: #06f;
+  }
   /* 底部 */
   .footer {
     padding: 20px;

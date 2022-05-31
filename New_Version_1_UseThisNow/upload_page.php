@@ -7,6 +7,13 @@
     <title>在线上传1</title>
     <link rel="stylesheet" href="css/fdl_week12_css.css">
 </head>
+	<style>
+		.alert-primary{
+	
+		color:#1D03FF;
+		}
+	
+	</style>
 
 <body>
     <?php include('header_include.php')?>
@@ -16,7 +23,7 @@
     $current_user_id=$_SESSION['id'];
   ?>
         <?php
-    $errors=array('sel1'=>'','sel2'=>'','title'=>'','abstract'=>'','picture'=>'','artical'=>'','isanonymous'=>'',);
+    $errors=array('sel1'=>'','sel2'=>'','title'=>'','abstract'=>'','picture'=>'请上传图片文件','artical'=>'请上传pdf文件','isanonymous'=>'',);
     define('NEW_PATH_photo','images/');   //文章封面保存地址
     define('NEW_PATH_artical','artical/'); //文章pdf保存地址
     if(isset($_POST['submit'])){
@@ -39,7 +46,9 @@
       $abstract=$_POST['abstract'];
       $picture=$_FILES['picture']['name'];
       $artical=$_FILES['artical']['name'];
-      $isanonymous=$_POST['isanonymous'];
+      if(isset($_POST['isanonymous'])){
+        $isanonymous=$_POST['isanonymous'];
+      }
       $upload_time=date("Y-m-d");
       if($_POST['sel1']=="0"){
         $errors['sel1']='请选择分类';
@@ -59,7 +68,7 @@
       if(empty($artical)){
         $errors['artical']="请上传文章";
       }
-      if(empty($isanoymous)){
+      if(empty($isanonymous)){
         $errors['isanonymous']="请选择是否匿名";
       }
       if(move_uploaded_file($_FILES['picture']['tmp_name'],$target_picture)&&move_uploaded_file($_FILES['artical']['tmp_name'],$target_artical)){ //转移，从原来的tmp临时文件夹转移到指定目标文件夹
@@ -68,16 +77,18 @@
           $conn = mysqli_connect($host,$user,$dbpassword,$dbname);
           //将：uid、分类、标签、标题、摘要、封面、文章内容、是否匿名、点赞数、收藏数、作者id  新建文章
           $query = "INSERT INTO artical VALUES(0,'$sel1','$sel2','$title','$abstract','$picture','$artical','$isanonymous','0','0','$current_user_id','$upload_time','')";
-          mysqli_query($conn,$query);
-      }
+          mysqli_query($conn,$query);?>
+          <meta   http-equiv = "refresh"  content = "0.1;url=http://localhost/SDIMER-s-WebBulit-main_last/SDIMER-s-WebBulit-main/week12/upload_result.php" >
+          <!-- 上传成功后跳转页面 -->
+      <?php }
     }
   ?>
     <div class="biao_ti">
       <h2>在线上传文章</h2></div>
       <div class="leftcolumn" >
-        <div class="card" style="height: 700px;text-align: center;line-height: 50px;padding: 0 100px;"  >
+        <div class="card4" style="height: 900px;text-align: center;line-height: 50px;padding: 0 100px;background:#FFF9F9;"  >
             <h2><em>分享您的所知所想</em></h2>
-            <form name="stu_add_form" action="upload_page.php" enctype="multipart/form-data" method="post">
+            <form name="stu_add_form" action="" enctype="multipart/form-data" method="post">
                 <span style="font-size: 18px">
               <?php
                 $conn = mysqli_connect($host,$user,$dbpassword,$dbname);
@@ -130,8 +141,11 @@
                 </div>
                 <div>
                   标签 :
-                  <select name="sel2[]" multiple="multiple" id="sel2">
-                    <option selected value="0">==选择专业 ==</option> 
+                  <select name="sel2[]"  id="sel2" size="1">
+                    <option selected value="0">==选择专业 ==</option>   <?php $num = count($classification); 
+                      for($i=0;$i<$num;$i++){ ?>
+                      <option value="<?php echo $classification[$i]['uid'];?>"><?php echo $classification[$i]['classification_name'];?></option>
+                    <?php }?> 
                   </select>
                   <div class="alert-primary"><?php echo $errors['sel2'];?></div>   <!--是否选择标签检查--!>
                 </div>
@@ -143,11 +157,11 @@
             </ol>
           <p3>
             <label> 标题</label>
-            <input  type="text" size = "90px" name = "title"/>
+            <input  type="text" size = "90px"  name = "title"/>
             <div class="alert-primary"><?php echo $errors['title'];?></div>
           </p3>
           <p4>
-            <br>
+
             <label> 摘要&关键词</label>
             <input type="text" size = "80px"  name = "abstract"/>
             <div class="alert-primary"><?php echo $errors['abstract'];?></div>
@@ -155,14 +169,14 @@
           <br>
           </span></em>
                       <hr size="5px" color="#555555">
-                      <div class="box2">
+                      <div class="box2" style="line-height:30px;padding-top:20px;">
                           <div> <span style="font-size: 18px"><em>
-                  <label for="name">上传封面：</label>
-                  <input type="file" id="avaPhoto" name="picture"/>
+                  <label for="name">上传封面：</label> 
+                  <input type="file" id="avaPhoto" name="picture"/> <span style="font-size:15px;color:red;"></span>
                   <div class="alert-primary"><?php echo $errors['picture'];?></div>
                   <br/>
                   <label for="name">上传文章：</label>
-                  <input type="file" id="avaPhoto" name="artical"/ >
+                  <input type="file" id="avaPhoto" name="artical"/ ><span style="font-size:15px;color:red;"></span>
                   <div class="alert-primary"><?php echo $errors['artical'];?></div>
                   <br/>
                   <p1>是否匿名</p1>
@@ -172,7 +186,7 @@
                   否
                   <br>
                   <div class="alert-primary"><?php echo $errors['isanonymous'];?></div>
-                  <input type="submit" value="提交" name="submit"/>
+           <input type="submit" style="width: 80px;height: 30px;" value="提交" name="submit"/>
                 </em></span></div>
                       </div>
           </form>

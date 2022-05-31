@@ -19,7 +19,8 @@ function checkInfo($Data)
 //其实php可以不用给初始值，但是担心后面的echo要打印会报错，所以给出
 $isInfoAvailable = false;
 //错误提示信息，在输入框旁边显示，初始值是必填项目
-$errorusername = $errorpassword = "必填项目";
+$errorusername ="初始用户名为学号";
+$errorpassword ="初始密码为学号";
 //下面开始判断信息是否为空，是否合法
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (empty($_POST["username"])) {
@@ -127,15 +128,22 @@ if ($isInfoAvailable == true) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>SDIMER'S</title>
-    <link href="css/login_style.css" rel="stylesheet" type="text/css" />
+    <link href="css/login.css" rel="stylesheet" type="text/css" />
+    <!-- 实现登陆界面随机切换背景图片 -->
+    <?php $rand_number=rand(1,3);?>
+    <style>
+        body{
+            background-image: url(source/sdim_<?php echo $rand_number;?>.jpg);
+        }
+    </style>
 </head>
 
 
 <body>
     <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-        <div class="container">
+        <div class="container" >
             <div class="logo">
-                <img class="icon" src="images/usericon/LOGO.jpg" />
+                <img class="icon" src="source/pic-1.jpg" />
             </div>
 
             <div class="title">SDIMER'S</div>
@@ -158,13 +166,13 @@ if ($isInfoAvailable == true) {
                     <span class="strip-7"></span>
                     <button type="submit" class="btn">LOGIN</button>
                 </div>
+                <div class="line">
+                    <a href="#">Forgot password?</a>
+                    <span id="dot">.</span>
+                    <a href="classification_page.php">view as visitor</a>
+                </div>
             </div>
-            <div class="line">
-                <a href="#">Forgot password?</a>
-                <span id="dot">.</span>
-                <a href="classification_page.php">view as visitor</a>
-                
-            </div>
+            
         </div>
 </body>
 

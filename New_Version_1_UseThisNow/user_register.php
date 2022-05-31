@@ -12,6 +12,7 @@
 </style>
 </head>
 <body>
+    
 <?php
    
     function checkInfo($Data)
@@ -49,7 +50,7 @@
 
 
     if ($isInfoAvailable == true) {
-        $coon = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbname); //大范围到小范围，服务器到数据库
+        $coon = mysqli_connect($host, $user,$dbpassword,$dbname); //大范围到小范围，服务器到数据库
         if (!$coon) {
             die("connect failed");
         } else {
@@ -106,8 +107,12 @@
 
       </ul>
   </div> -->
-
+  
 </nav>
+  <div >
+    <span class="zone_classify"><a href="artical_manager.php" >文章管理</a></span>
+    <span class="zone_classify" ><a href="user_register.php" style="color:blue;">用户新增</a></span>
+  </div>
 <div class="secondnav">
   <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
    <div class="biao_ti">
